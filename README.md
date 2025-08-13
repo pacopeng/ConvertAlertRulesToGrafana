@@ -1,50 +1,86 @@
-Shell scripts that will take your Grafana provisioning-format JSON file and upload the rules to your Grafana instance using its REST API. Make sure your Grafana alert rules are saved in a JSON file (e.g., my-rules.json).
+# Grafana Alert Rule Management Scripts
 
-The  grafana_provisioning_rules folder contains the OpenShift out-of-box alert rules 
+This repository contains a set of shell scripts designed to automate the management of Grafana alert rules using the Grafana REST API. These scripts allow you to upload and delete alert rules in bulk from a Grafana-provisioning-format JSON file.
 
-grafana_provisioning_rules/openshift-dns.rules.json
-grafana_provisioning_rules/openshift-etcd.rules.json
-grafana_provisioning_rules/openshift-logging-collector.json
-grafana_provisioning_rules/openshift-logging-logging-loki-prometheus-rule.json
-grafana_provisioning_rules/openshift-ovn-kubernetes-master-rules.json
-grafana_provisioning_rules/openshift-ovn-kubernetes-networking-rules.json
-grafana_provisioning_rules/openshift-storage-noobaa-prometheus-rules.json
-grafana_provisioning_rules/openshift-storage-ocs-prometheus-rules.json
-grafana_provisioning_rules/openshift-storage-prometheus-ceph-rules.json
+This is particularly useful for migrating alert rules from one environment to another or for managing your Grafana alerts as code (GitOps).
 
-This script automates the process by reading your JSON file, finding or creating the correct folders in Grafana, and then uploading each rule group to its designated folder.
+---
 
-The Scripts requires curl for making the API requests and jq for parsing the JSON file. jq is a standard, lightweight command-line JSON processor.
+## Included Rule Files
 
+The `grafana_provisioning_rules/` directory contains a set of out-of-the-box OpenShift Container Platform alert rules that have been converted into the Grafana provisioning format. These include:
 
-How to Use the Script
-Get an API Key: In your Grafana UI, go to Administration > Users and access > API keys and create a key with at least the Editor role. Copy the key.(the user needs to be able to create alert rules  in Grafana, i.e edit role of a organization in grafana)
+-   `openshift-dns.rules.json`
+-   `openshift-etcd.rules.json`
+-   `openshift-logging-collector.json`
+-   `openshift-logging-logging-loki-prometheus-rule.json`
+-   `openshift-ovn-kubernetes-master-rules.json`
+-   `openshift-ovn-kubernetes-networking-rules.json`
+-   `openshift-storage-noobaa-prometheus-rules.json`
+-   `openshift-storage-ocs-prometheus-rules.json`
+-   `openshift-storage-prometheus-ceph-rules.json`
 
-Make the Script Executable:
+---
 
-Bash
+## Prerequisites
 
+Before using these scripts, ensure you have the following:
+
+1.  **Command-Line Tools:**
+    * **`curl`**: A tool for transferring data with URLs, used to make the API requests.
+    * **`jq`**: A lightweight and powerful command-line JSON processor.
+        * **macOS:** `brew install jq`
+        * **Linux (Debian/Ubuntu):** `sudo apt-get install jq`
+        * **Linux (RHEL/CentOS):** `sudo yum install jq`
+
+2.  **Grafana API Key:**
+    * You need an API key with the **Editor** role for the target Grafana organization. An Editor role is required to create, view, and delete folders and alert rules.
+    * To create a key, log in to Grafana and navigate to **Administration > Users and access > API keys** > **+ Add API key**. **Note:** If you are targeting a specific organization, the API key must be created *within* that organization.
+
+---
+
+## How to Use the Scripts
+
+### 📜 `upload-grafana-rules.sh`
+
+This script reads a Grafana-provisioning-format JSON file, finds or creates the specified folders in Grafana, and uploads each rule individually.
+
+#### **Usage**
+
+Make the script executable and run it with the required arguments.
+
+```bash
 chmod +x upload-grafana-rules.sh
-Run the Command: Execute the script from your terminal, providing your Grafana URL, the API key, and the path to your JSON file.
-
-Bash
-
-./upload-grafana-rules.sh http://your-grafana.com <YOUR_API_KEY> my-rules.json
-The script will then connect to your Grafana instance, create the necessary folders, and upload each rule group from your file.
+```bash
+./upload-grafana-rules.sh <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json> [ORG_NAME]
 
 
+**Arguments:**
+* **`GRAFANA_URL`**: The base URL of your Grafana instance (e.g., `https://grafana.example.com`).
+* **`GRAFANA_API_KEY`**: The API key you generated with the Editor role.
+* **`PATH_TO_RULES_FILE.json`**: The path to the JSON file containing the alert rules.
 
-How to Use the Deletion Script
-Get an API Key: Ensure you have a Grafana API key with the Editor role.
+### Examples
 
-Make the Script Executable:
+**1. Upload to the default organization:**
+```bash
+./upload-grafana-rules.sh [https://my-grafana.com](https://my-grafana.com) glsa_xxxxxxxxxx grafana_provisioning_rules/openshift-dns.rules.json
+
+
+**2. delete all rules defined in the openshift-dns.rules json file: **
+This script reads the same JSON file, extracts the Unique ID (uid) of every rule, and sends a DELETE request to Grafana for each one.
+
+Usage
+Make the script executable and run it with the same arguments you would use for uploading.
 
 Bash
 
 chmod +x delete-grafana-rules.sh
-Run the Command: Execute the script, providing your Grafana URL, the API key, and the same JSON file you used for the upload.
+```bash
+./delete-grafana-rules.sh <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json> [ORG_NAME]
+Example
+Delete all rules defined in the openshift-dns.rules.json file
 
 Bash
 
-./delete-grafana-rules.sh http://your-grafana.com <YOUR_API_KEY> my-rules.json
-The script will then delete every rule that is defined in your JSON file.
+./delete-grafana-rules.sh https://my-grafana.com glsa_xxxxxxxxxx grafana_provisioning_rules/openshift-dns.rules.json
