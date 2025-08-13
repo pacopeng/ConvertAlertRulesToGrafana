@@ -1,0 +1,5 @@
+configmap.yaml
+extract_rules.sh
+convert_to_grafana.sh
+upload-grafana-rules copy.sh
+prometheus_rules/

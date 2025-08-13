@@ -1,0 +1,1192 @@
+{
+    "apiVersion": 1,
+    "groups": [
+        {
+            "orgId": 1,
+            "name": "logging_clusterlogging_telemetry.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-logging-collector.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "50a3d3ad-a261-5069-abf5-e07b358a9e00",
+                    "title": "cluster:log_collected_bytes_total:sum",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by(cluster)(log_collected_bytes_total)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "cluster:log_collected_bytes_total:sum",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "e959381d-499b-56fa-8423-f695920a65cc",
+                    "title": "cluster:log_logged_bytes_total:sum",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by(cluster)(log_logged_bytes_total)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "cluster:log_logged_bytes_total:sum",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "b8461c6c-6b5e-59a1-a2dd-f18baf1602bb",
+                    "title": "collector:log_num_errors:sum_rate",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by(pod, namespace, app_kubernetes_io_part_of)(rate(vector_component_errors_total[2m])) or sum by(pod, namespace, app_kubernetes_io_part_of)(rate(fluentd_output_status_num_errors[2m]))\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "collector:log_num_errors:sum_rate",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "b1a0fdba-12b8-57ab-8a41-492ee7c9eab7",
+                    "title": "collector:received_events:sum_rate",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by(pod, namespace, app_kubernetes_io_part_of)(rate(vector_component_received_events_total[2m])) or sum by(pod, namespace, app_kubernetes_io_part_of)(rate(fluentd_output_status_emit_records[2m]))\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "collector:received_events:sum_rate",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "logging_collector.alerts",
+            "folder": "RHOCP_OPS_EXTRA/openshift-logging-collector.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "ce2273d4-b84a-5325-a7da-0779c30455c6",
+                    "title": "CollectorNodeDown",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "up{app_kubernetes_io_component = \"collector\", app_kubernetes_io_part_of = \"cluster-logging\"} == 0\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "10m",
+                    "annotations": {
+                        "message": "Prometheus could not scrape {{ $labels.namespace }}/{{ $labels.pod }} collector component for more than 10m.",
+                        "summary": "Collector cannot be scraped"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "service": "collector",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "63948738-0b13-5fed-be16-cbb88c8c7b90",
+                    "title": "CollectorHighErrorRate",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "100 * (\n    collector:log_num_errors:sum_rate{app_kubernetes_io_part_of = \"cluster-logging\"}\n  /\n    collector:received_events:sum_rate{app_kubernetes_io_part_of = \"cluster-logging\"}\n  ) \u003e 0.001\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "15m",
+                    "annotations": {
+                        "message": "{{ $value }}% of records have resulted in an error by {{ $labels.namespace }}/{{ $labels.pod }} collector component.",
+                        "summary": "{{ $labels.namespace }}/{{ $labels.pod }} collector component errors are high"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "service": "collector",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "c6318400-1076-50a4-b76e-5d5fca427aad",
+                    "title": "CollectorVeryHighErrorRate",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "100 * (\n    collector:log_num_errors:sum_rate{app_kubernetes_io_part_of = \"cluster-logging\"}\n  /\n    collector:received_events:sum_rate{app_kubernetes_io_part_of = \"cluster-logging\"}\n  ) \u003e 0.05\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "15m",
+                    "annotations": {
+                        "message": "{{ $value }}% of records have resulted in an error by {{ $labels.namespace }}/{{ $labels.pod }} collector component.",
+                        "summary": "{{ $labels.namespace }}/{{ $labels.pod }} collector component errors are very high"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "service": "collector",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "606d791e-a624-5c75-b089-22d906c75bb7",
+                    "title": "FluentdQueueLengthIncreasing",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by (pod,plugin_id) ( 0 * (deriv(fluentd_output_status_emit_records[1m] offset 1h)))  + on(pod,plugin_id)  ( deriv(fluentd_output_status_buffer_queue_length[10m]) \u003e 0 and delta(fluentd_output_status_buffer_queue_length[1h]) \u003e 1 )\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "1h",
+                    "annotations": {
+                        "message": "For the last hour, fluentd {{ $labels.pod }} output '{{ $labels.plugin_id }}' average buffer queue length has increased continuously.",
+                        "summary": "Fluentd pod {{ $labels.pod }} is unable to keep up with traffic over time for forwarder output {{ $labels.plugin_id }}."
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "service": "collector",
+                        "severity": "Warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "c93bbfdf-7971-566d-a466-fca12c86c20d",
+                    "title": "ElasticsearchDeprecation",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum(kube_pod_labels{namespace=\"openshift-logging\",label_component='elasticsearch'}) \u003e 0\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5m",
+                    "annotations": {
+                        "message": "The OpenShift Elasticsearch Operator is deprecated and is planned to be removed in a future release. Red Hat provides bug fixes and support for this feature during the current release lifecycle, but this feature no longer receives enhancements. As an alternative to using the OpenShift Elasticsearch Operator to manage the default log storage, you can use the Loki Operator.",
+                        "summary": "Detected Elasticsearch as the in-cluster storage which is deprecated and will be removed in a future release."
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "namespace": "openshift-logging",
+                        "service": "storage",
+                        "severity": "Warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "7030b6e6-1cca-516e-b27e-d8bb98c434eb",
+                    "title": "FluentdDeprecation",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum(kube_pod_labels{namespace=\"openshift-logging\", label_implementation='fluentd', label_app_kubernetes_io_managed_by=\"cluster-logging-operator\"}) \u003e 0\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5m",
+                    "annotations": {
+                        "message": "Fluentd is deprecated and is planned to be removed in a future release. Red Hat provides bug fixes and support for this feature during the current release lifecycle, but this feature no longer receives enhancements. As an alternative to Fluentd, you can use Vector instead.",
+                        "summary": "Detected Fluentd as the collector which is deprecated and will be removed in a future release."
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "namespace": "openshift-logging",
+                        "service": "collector",
+                        "severity": "Warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "e0f0872c-94f3-5c3d-8c5f-56dd4841aa8e",
+                    "title": "KibanaDeprecation",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum(kube_pod_labels{namespace=\"openshift-logging\",label_component='kibana'}) \u003e 0\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5m",
+                    "annotations": {
+                        "message": "The Kibana web console is now deprecated and is planned to be removed in a future logging release.",
+                        "summary": "Detected Kibana as the visualization which is deprecated and will be removed in a future release."
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "namespace": "openshift-logging",
+                        "service": "visualization",
+                        "severity": "Warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "f15c5d05-1dfb-5ab8-b3bc-70425f85e3ec",
+                    "title": "DiskBufferUsage",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(label_replace(sum by(hostname) (vector_buffer_byte_size{component_kind='sink', buffer_type='disk'}), 'instance', '$1', 'hostname', '(.*)') \n/ on(instance) group_left() sum by(instance) (node_filesystem_size_bytes{mountpoint='/var'})) * 100  \u003e 15\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5m",
+                    "annotations": {
+                        "message": "Collectors potentially consuming too much node disk, {{ $value }}% ",
+                        "summary": "Detected consuming too much node disk on $labels.hostname host"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "service": "collector",
+                        "severity": "Warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        }
+    ]
+}

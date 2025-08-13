@@ -1,0 +1,557 @@
+{
+    "apiVersion": 1,
+    "groups": [
+        {
+            "orgId": 1,
+            "name": "cluster-network-operator-master.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-ovn-kubernetes-master-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "64179fba-2d4a-5003-ba6f-921305f59ff5",
+                    "title": "cluster:ovnkube_controller_egress_routing_via_host:max",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "max(ovnkube_controller_egress_routing_via_host)",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "cluster:ovnkube_controller_egress_routing_via_host:max",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "be47afed-abfa-53d4-9e2f-918892351698",
+                    "title": "V4SubnetAllocationThresholdExceeded",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "ovnkube_clustermanager_allocated_v4_host_subnets / ovnkube_clustermanager_num_v4_host_subnets \u003e 0.8",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "10m",
+                    "annotations": {
+                        "description": "More than 80% of IPv4 subnets are used. Insufficient IPv4 subnets could degrade provisioning of workloads.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/cluster-network-operator/V4SubnetAllocationThresholdExceeded.md",
+                        "summary": "More than 80% of v4 subnets available to assign to the nodes are allocated. Current v4 subnet allocation percentage is {{ $value | humanizePercentage }}."
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "d4774322-1852-5fca-bc44-f1db56faf684",
+                    "title": "V6SubnetAllocationThresholdExceeded",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "ovnkube_clustermanager_allocated_v6_host_subnets / ovnkube_clustermanager_num_v6_host_subnets \u003e 0.8",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "10m",
+                    "annotations": {
+                        "description": "More than 80% of IPv6 subnets are used. Insufficient IPv6 subnets could degrade provisioning of workloads.",
+                        "summary": "More than 80% of the v6 subnets available to assign to the nodes are allocated. Current v6 subnet allocation percentage is {{ $value | humanizePercentage }}."
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "ce19b5c4-ea21-539a-a47a-95edea4b06eb",
+                    "title": "NoRunningOvnControlPlane",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "absent(up{job=\"ovnkube-control-plane\", namespace=\"openshift-ovn-kubernetes\"} == 1)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5m",
+                    "annotations": {
+                        "description": "Networking control plane is degraded. Networking configuration updates applied to the cluster will not be\nimplemented while there are no OVN Kubernetes control plane pods.\n",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/cluster-network-operator/NoRunningOvnControlPlane.md",
+                        "summary": "There is no running ovn-kubernetes control plane."
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "namespace": "openshift-ovn-kubernetes",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "eafefbc0-c0dc-56d3-b9b9-12a3919e507c",
+                    "title": "NoOvnClusterManagerLeader",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "# Without max_over_time, failed scrapes could create false negatives, see\n# https://www.robustperception.io/alerting-on-gauges-in-prometheus-2-0 for details.\nmax by (namespace) (max_over_time(ovnkube_clustermanager_leader[5m])) == 0\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5m",
+                    "annotations": {
+                        "description": "Networking control plane is degraded. Networking configuration updates applied to the cluster will not be\nimplemented while there is no OVN Kubernetes cluster manager leader. Existing workloads should continue to have connectivity.\nOVN-Kubernetes control plane is not functional.\n",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/cluster-network-operator/NoOvnClusterManagerLeader.md",
+                        "summary": "There is no ovn-kubernetes cluster manager leader."
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        }
+    ]
+}

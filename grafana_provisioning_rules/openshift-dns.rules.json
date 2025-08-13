@@ -1,0 +1,389 @@
+{
+    "apiVersion": 1,
+    "groups": [
+        {
+            "orgId": 1,
+            "name": "openshift-dns.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-dns-operator-dns.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "ee651158-0cb7-5498-a99c-22e6c7a9d39f",
+                    "title": "CoreDNSPanicking",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "increase(coredns_panics_total[10m]) \u003e 0",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5m",
+                    "annotations": {
+                        "description": "{{ $value }} CoreDNS panics observed on {{ $labels.instance }}",
+                        "summary": "CoreDNS panic"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "60b17446-1556-5635-b134-d9584c81aa84",
+                    "title": "CoreDNSHealthCheckSlow",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "histogram_quantile(.95, sum(rate(coredns_health_request_duration_seconds_bucket[5m])) by (instance, le)) \u003e 10",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5m",
+                    "annotations": {
+                        "description": "CoreDNS Health Checks are slowing down (instance {{ $labels.instance }})",
+                        "summary": "CoreDNS health checks"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "d079417f-01da-51b7-90da-0954f32b6596",
+                    "title": "CoreDNSErrorsHigh",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(sum by(namespace) (rate(coredns_dns_responses_total{rcode=\"SERVFAIL\"}[5m]))\n  /\nsum by(namespace) (rate(coredns_dns_responses_total[5m])))\n\u003e 0.01\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5m",
+                    "annotations": {
+                        "description": "CoreDNS is returning SERVFAIL for {{ $value | humanizePercentage }} of requests.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/cluster-dns-operator/CoreDNSErrorsHigh.md",
+                        "summary": "CoreDNS serverfail"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        }
+    ]
+}

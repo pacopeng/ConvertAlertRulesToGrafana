@@ -1,0 +1,3045 @@
+{
+    "apiVersion": 1,
+    "groups": [
+        {
+            "orgId": 1,
+            "name": "ODF_standardized_metrics.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "41021dfb-266c-5c5b-b2be-989eebf38d9c",
+                    "title": "odf_system_health_status",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "ceph_health_status\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "system_type": "OCS",
+                        "system_vendor": "Red Hat"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "odf_system_health_status",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "a0ff2b0d-62e1-5e13-a029-bd4022018ee2",
+                    "title": "odf_system_raw_capacity_total_bytes",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "ceph_cluster_total_bytes\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "system_type": "OCS",
+                        "system_vendor": "Red Hat"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "odf_system_raw_capacity_total_bytes",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "ffae4bf3-38c1-544b-9fce-abf63e8b0916",
+                    "title": "odf_system_raw_capacity_used_bytes",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "ceph_cluster_total_used_raw_bytes\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "system_type": "OCS",
+                        "system_vendor": "Red Hat"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "odf_system_raw_capacity_used_bytes",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "7a8b31b9-0e8f-51a8-b203-c333b3e2fc30",
+                    "title": "odf_system_iops_total_bytes",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by (namespace, managedBy, job, service) (rate(ceph_pool_wr[1m]) + rate(ceph_pool_rd[1m]))\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "system_type": "OCS",
+                        "system_vendor": "Red Hat"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "odf_system_iops_total_bytes",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "9f50c82b-bcbc-5f6f-9a5e-cc2b5243c3e6",
+                    "title": "odf_system_throughput_total_bytes",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by (namespace, managedBy, job, service) (rate(ceph_pool_wr_bytes[1m]) + rate(ceph_pool_rd_bytes[1m]))\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "system_type": "OCS",
+                        "system_vendor": "Red Hat"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "odf_system_throughput_total_bytes",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "d6ffb7f8-d6de-538b-b650-3ead21052742",
+                    "title": "odf_system_latency_seconds",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by (namespace, managedBy, job, service)\n(\n  topk by (ceph_daemon) (1, label_replace(label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"}, \"instance\", \"$1\", \"exported_instance\", \"(.*)\"), \"device\", \"$1\", \"device\", \"/dev/(.*)\")) \n  * on(instance, device) group_left() topk by (instance,device) \n  (1,\n    (\n      (  \n          rate(node_disk_read_time_seconds_total[1m]) / (clamp_min(rate(node_disk_reads_completed_total[1m]), 1))\n      ) +\n      (\n          rate(node_disk_write_time_seconds_total[1m]) / (clamp_min(rate(node_disk_writes_completed_total[1m]), 1))\n      )\n    )\n  )\n)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "system_type": "OCS",
+                        "system_vendor": "Red Hat"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "odf_system_latency_seconds",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "2c0b0d58-0925-58b3-8d14-af1f55062452",
+                    "title": "odf_system_objects_total",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum (ocs_objectbucket_objects_total)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "system_type": "OCS",
+                        "system_vendor": "Red Hat"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "odf_system_objects_total",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "00783b3d-a745-553a-a4f8-bcad3ba3f5e5",
+                    "title": "odf_system_bucket_count",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum (ocs_objectbucket_count_total)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "system_type": "OCS",
+                        "system_vendor": "Red Hat"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "odf_system_bucket_count",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "ceph-blocklist-alerts.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "14c06660-763e-5af0-8895-cec593dc73e3",
+                    "title": "ODFRBDClientBlocked",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(\n  ocs_rbd_client_blocklisted{node=~\".+\"} == 1\n)\nand on(node) (\n  kube_pod_container_status_waiting_reason{reason=\"CreateContainerError\"}\n  * on(pod, namespace, managedBy) group_left(node)\n  kube_pod_info\n) \u003e 0\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "10s",
+                    "annotations": {
+                        "description": "An RBD client might be blocked by Ceph on node {{ $labels.node_name }} in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}. This alert is triggered when the ocs_rbd_client_blocklisted metric reports a value of 1 for the node and there are pods in a CreateContainerError state on the node. This may cause the filesystem for the PVCs to be in a read-only state. Please check the pod description for more details.",
+                        "message": "An RBD client might be blocked by Ceph on node {{ $labels.node_name }} in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/ODFRBDClientBlocked.md",
+                        "severity_level": "error"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "ceph-daemon-performance-alerts.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "18589019-c27b-55cc-87c4-2c9ec839e232",
+                    "title": "OSDCPULoadHigh",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "pod:container_cpu_usage:sum{pod=~\"rook-ceph-osd-.*\"} / on(pod) kube_pod_resource_limit{resource='cpu',pod=~\"rook-ceph-osd-.*\"} \u003e 0.80\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "30m",
+                    "annotations": {
+                        "description": "CPU usage for osd on pod {{ $labels.pod }} has exceeded 80%. Consider creating more OSDs to increase performance",
+                        "message": "High CPU usage detected in OSD container on pod {{ $labels.pod}}.",
+                        "severity_level": "warning"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "fdf183c8-e7a7-5dcf-9532-6d9685ac5862",
+                    "title": "MDSCPUUsageHigh",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "pod:container_cpu_usage:sum{pod=~\"rook-ceph-mds.*\"}/ on(pod) kube_pod_resource_limit{resource='cpu',pod=~\"rook-ceph-mds.*\"} \u003e 0.67\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "6h",
+                    "annotations": {
+                        "description": "Ceph metadata server pod ({{ $labels.pod }}) has high cpu usage.\nPlease consider increasing the CPU request for the {{ $labels.pod }} pod as described in the runbook.",
+                        "message": "Ceph metadata server pod ({{ $labels.pod }}) has high cpu usage",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/CephMdsCpuUsageHigh.md",
+                        "severity_level": "warning"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "cluster-services-alert.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "9c5bd7fd-f3d0-5896-bd64-87d6bd73220c",
+                    "title": "ClusterObjectStoreState",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "ocs_rgw_health_status{job=\"ocs-metrics-exporter\"} == 2\nor\nkube_deployment_status_replicas_ready{deployment=~\"rook-ceph-rgw-.*\"} \u003c kube_deployment_spec_replicas{deployment=~\"rook-ceph-rgw-.*\"}\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "15s",
+                    "annotations": {
+                        "description": "RGW endpoint of the Ceph object store is in a failure state or one or more Rook Ceph RGW deployments have fewer ready replicas than required for more than 15s. Please check the health of the Ceph cluster and the deployments in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Cluster Object Store is in unhealthy state or number of ready replicas for Rook Ceph RGW deployments is less than the desired replicas in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/ClusterObjectStoreState.md",
+                        "severity_level": "error",
+                        "storage_type": "RGW"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "mirroring-alert.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "69e685f6-fb89-5d8c-a06e-d37eed84955a",
+                    "title": "OdfMirrorDaemonStatus",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "((count by(namespace, managedBy) (ocs_mirror_daemon_count{job=\"ocs-metrics-exporter\"} == 0)) * on(namespace, managedBy) group_left() (count by(namespace, managedBy) (ocs_pool_mirroring_status{job=\"ocs-metrics-exporter\"} == 1))) \u003e 0\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "1m",
+                    "annotations": {
+                        "description": "Mirror daemon is in unhealthy status for more than 1m. Mirroring is not working as expected in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Mirror daemon is unhealthy in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/OdfMirrorDaemonStatus.md",
+                        "severity_level": "error",
+                        "storage_type": "ceph"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "2460fb6a-0a99-509b-892c-aebe31899d77",
+                    "title": "OdfPoolMirroringImageHealth",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(ocs_pool_mirroring_image_health{job=\"ocs-metrics-exporter\"}  * on (namespace, managedBy) group_left() (max by(namespace, managedBy) (ocs_pool_mirroring_status{job=\"ocs-metrics-exporter\"}))) == 1\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "1m",
+                    "annotations": {
+                        "description": "Mirroring image(s) (PV) in the pool {{ $labels.name }} are in Unknown state for more than 1m. Mirroring might not work as expected in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Mirroring image(s) (PV) in the pool {{ $labels.name }} are in Unknown state in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/OdfPoolMirroringImageHealth.md",
+                        "severity_level": "warning",
+                        "storage_type": "ceph"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "mirroring_image_status": "unknown",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "0c3fe69c-1710-597f-b16e-17f1c75b81e2",
+                    "title": "OdfPoolMirroringImageHealth",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(ocs_pool_mirroring_image_health{job=\"ocs-metrics-exporter\"}  * on (namespace, managedBy) group_left() (max by(namespace, managedBy) (ocs_pool_mirroring_status{job=\"ocs-metrics-exporter\"}))) == 2\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "1m",
+                    "annotations": {
+                        "description": "Mirroring image(s) (PV) in the pool {{ $labels.name }} are in Warning state for more than 1m. Mirroring might not work as expected in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Mirroring image(s) (PV) in the pool {{ $labels.name }} are in Warning state for cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/OdfPoolMirroringImageHealth.md",
+                        "severity_level": "warning",
+                        "storage_type": "ceph"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "mirroring_image_status": "warning",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "3fd7e3ae-ba99-5c5c-bc4d-74b6a8443f9b",
+                    "title": "OdfPoolMirroringImageHealth",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(ocs_pool_mirroring_image_health{job=\"ocs-metrics-exporter\"}  * on (namespace, managedBy) group_left() (max by(namespace, managedBy) (ocs_pool_mirroring_status{job=\"ocs-metrics-exporter\"}))) == 3\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "10s",
+                    "annotations": {
+                        "description": "Mirroring image(s) (PV) in the pool {{ $labels.name }} are in Error state for more than 10s. Mirroring is not working as expected in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Mirroring image(s) (PV) in the pool {{ $labels.name }} are in Error state for cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/OdfPoolMirroringImageHealth.md",
+                        "severity_level": "error",
+                        "storage_type": "ceph"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "mirroring_image_status": "error",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "3fd23440-9718-5a49-8a11-d80d9c997d65",
+                    "title": "ODFPersistentVolumeMirrorStatus",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "ocs_rbd_mirror_image_state{job=\"ocs-metrics-exporter\"} * on(image,pool_name) group_left(name,namespace,managedBy) ocs_rbd_pv_metadata{job=\"ocs-metrics-exporter\"} == 1\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "1m",
+                    "annotations": {
+                        "description": "Persistent volume {{ $labels.name }}/{{ $labels.namespace }} is not mirrored properly to peer site {{ $labels.site_name }} for more than 1m. RBD image={{ $labels.image }} and CephBlockPool={{ $labels.pool_name }}. Please check namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Persistent volume {{ $labels.name }}/{{ $labels.namespace }} is not mirrored properly to peer site {{ $labels.site_name }} in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/ODFPersistentVolumeMirrorStatus.md",
+                        "severity_level": "error",
+                        "storage_type": "ceph"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "0b3a7ea5-c690-55e5-9c32-a4d311849a81",
+                    "title": "ODFPersistentVolumeMirrorStatus",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "ocs_rbd_mirror_image_state{job=\"ocs-metrics-exporter\"} * on(image,pool_name) group_left(name,namespace,managedBy) ocs_rbd_pv_metadata{job=\"ocs-metrics-exporter\"} == 0\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "1m",
+                    "annotations": {
+                        "description": "Status unknown for Persistent volume {{ $labels.name }}/{{ $labels.namespace }} to peer site {{ $labels.site_name }} for more than 1m. RBD image={{ $labels.image }} and CephBlockPool={{ $labels.pool_name }}. Please check namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}",
+                        "message": "Status unknown for Persistent volume {{ $labels.name }}/{{ $labels.namespace }} mirroring to peer site {{ $labels.site_name }} in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/ODFPersistentVolumeMirrorStatus.md",
+                        "severity_level": "warning",
+                        "storage_type": "ceph"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "ocs-encryption-alert.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "e7de4fb6-f933-5152-85ec-31f2b42fb2cf",
+                    "title": "KMSServerConnectionAlert",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "ocs_storagecluster_kms_connection_status{job=\"ocs-metrics-exporter\"} == 1\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "5s",
+                    "annotations": {
+                        "description": "Storage Cluster KMS Server is in un-connected state for more than 5s. Please check KMS config in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Storage Cluster KMS Server is in un-connected state. Please check KMS config in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/KMSServerConnectionAlert.md",
+                        "severity_level": "error",
+                        "storage_type": "ceph"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "ocs_performance.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "49fce42d-0c3d-5964-a660-ef4349114d8f",
+                    "title": "cluster:ceph_disk_latency_read:join_ceph_node_disk_rate1m",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by (namespace, managedBy) (\n    topk by (ceph_daemon) (1, label_replace(label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"}, \"instance\", \"$1\", \"exported_instance\", \"(.*)\"), \"device\", \"$1\", \"device\", \"/dev/(.*)\")) \n  * on(instance, device) group_left topk by (instance,device) \n    (1,\n      (\n        rate(node_disk_read_time_seconds_total[1m]) / (clamp_min(rate(node_disk_reads_completed_total[1m]), 1))\n      )\n    )\n)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "cluster:ceph_disk_latency_read:join_ceph_node_disk_rate1m",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "05ee2b34-6769-5b2a-befd-0e5526f9067e",
+                    "title": "cluster:ceph_disk_latency_write:join_ceph_node_disk_rate1m",
+                    "condition": "query",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "sum by (namespace, managedBy) (\n    topk by (ceph_daemon) (1, label_replace(label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"}, \"instance\", \"$1\", \"exported_instance\", \"(.*)\"), \"device\", \"$1\", \"device\", \"/dev/(.*)\")) \n  * on(instance, device) group_left topk by (instance,device) \n    (1,\n      (\n        rate(node_disk_write_time_seconds_total[1m]) / (clamp_min(rate(node_disk_writes_completed_total[1m]), 1))\n      )\n    )\n)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "labels": {
+                        "__converted_prometheus_rule__": "true"
+                    },
+                    "isPaused": false,
+                    "record": {
+                        "metric": "cluster:ceph_disk_latency_write:join_ceph_node_disk_rate1m",
+                        "from": "query",
+                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                    },
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "odf-obc-quota-alert.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "c42b0051-2f6f-50bb-8cb3-2c53a4a51118",
+                    "title": "ObcQuotaBytesAlert",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(ocs_objectbucketclaim_info * on (namespace, objectbucket, managedBy) group_left() (ocs_objectbucket_used_bytes/ocs_objectbucket_max_bytes)) \u003e 0.80\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "10s",
+                    "annotations": {
+                        "description": "ObjectBucketClaim {{ $labels.objectbucketclaim }} has crossed 80% of the size limit set by the quota(bytes) and will become read-only on reaching the quota limit in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}. Increase the quota in the {{ $labels.objectbucketclaim }} OBC custom resource.",
+                        "message": "OBC has crossed 80% of the quota(bytes) in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/ObcQuotaBytesAlert.md",
+                        "severity_level": "warning",
+                        "storage_type": "RGW"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "bd7a1648-9f03-5c90-af56-b5d396a45fb1",
+                    "title": "ObcQuotaObjectsAlert",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(ocs_objectbucketclaim_info * on (namespace, managedBy, objectbucket) group_left() (ocs_objectbucket_objects_total/ocs_objectbucket_max_objects)) \u003e 0.80\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "for": "10s",
+                    "annotations": {
+                        "description": "ObjectBucketClaim {{ $labels.objectbucketclaim }} has crossed 80% of the size limit set by the quota(objects) and will become read-only on reaching the quota limit in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}. Increase the quota in the {{ $labels.objectbucketclaim }} OBC custom resource.",
+                        "message": "OBC has crossed 80% of the quota(object) in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/ObcQuotaObjectsAlert.md",
+                        "severity_level": "warning",
+                        "storage_type": "RGW"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "ccefb051-95e7-5ab2-9857-3da2b1725ece",
+                    "title": "ObcQuotaBytesExhausedAlert",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(ocs_objectbucketclaim_info * on (namespace, managedBy, objectbucket) group_left() (ocs_objectbucket_used_bytes/ocs_objectbucket_max_bytes)) \u003e= 1\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "annotations": {
+                        "description": "ObjectBucketClaim {{ $labels.objectbucketclaim }} has crossed the limit set by the quota(bytes) and will be read-only now in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}. Increase the quota in the {{ $labels.objectbucketclaim }} OBC custom resource immediately.",
+                        "message": "OBC reached quota(bytes) limit in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/ObcQuotaBytesExhausedAlert.md",
+                        "severity_level": "error",
+                        "storage_type": "RGW"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "d41f58d9-5ef2-534d-a0fc-ea98d2d62184",
+                    "title": "ObcQuotaObjectsExhausedAlert",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(ocs_objectbucketclaim_info * on (namespace, managedBy, objectbucket) group_left() (ocs_objectbucket_objects_total/ocs_objectbucket_max_objects)) \u003e= 1\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "annotations": {
+                        "description": "ObjectBucketClaim {{ $labels.objectbucketclaim }} has crossed the limit set by the quota(objects) and will be read-only now in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}. Increase the quota in the {{ $labels.objectbucketclaim }} OBC custom resource immediately.",
+                        "message": "OBC reached quota(object) limit in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/ObcQuotaObjectsExhausedAlert.md",
+                        "severity_level": "error",
+                        "storage_type": "RGW"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "storage-client-alerts.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "8564609f-5162-5eea-840a-a7c6d7e6bae9",
+                    "title": "StorageClientHeartbeatMissed",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(time() - 120) \u003e (ocs_storage_client_last_heartbeat \u003e 0)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "annotations": {
+                        "description": "Storage Client ({{ $labels.storage_consumer_name }}) heartbeat missed for more than 120 (s). Lossy network connectivity might exist in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Storage Client ({{ $labels.storage_consumer_name }}) heartbeat missed for more than 120 (s) in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "severity_level": "warning"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "eb2c6178-ef0e-5fef-9f8d-3f966a460779",
+                    "title": "StorageClientHeartbeatMissed",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "(time() - 300) \u003e (ocs_storage_client_last_heartbeat \u003e 0)\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "annotations": {
+                        "description": "Storage Client ({{ $labels.storage_consumer_name }}) heartbeat missed for more than 300 (s). Client might have lost internet connectivity in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Storage Client ({{ $labels.storage_consumer_name }}) heartbeat missed for more than 300 (s) in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "severity_level": "critical"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "97e6f56c-924b-5f6c-8391-ca642124bcaa",
+                    "title": "StorageClientIncompatibleOperatorVersion",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "floor((ocs_storage_provider_operator_version\u003e0)/1000) - ignoring(storage_consumer_name) group_right() floor((ocs_storage_client_operator_version\u003e0)/1000) == 1\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "annotations": {
+                        "description": "Storage Client Operator ({{ $labels.storage_consumer_name }}) lags by 1 minor version. Client configuration may be incompatible in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Storage Client Operator ({{ $labels.storage_consumer_name }}) lags by 1 minor version in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "severity_level": "warning"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "warning"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                },
+                {
+                    "uid": "ef462a95-dbbc-5c42-bbd6-ae3c73ad5e33",
+                    "title": "StorageClientIncompatibleOperatorVersion",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "floor((ocs_storage_provider_operator_version\u003e0)/1000) - ignoring(storage_consumer_name) group_right() floor((ocs_storage_client_operator_version\u003e0)/1000) \u003e 1 or floor((ocs_storage_client_operator_version\u003e0)/1000) - ignoring(storage_consumer_name) group_left() floor((ocs_storage_provider_operator_version\u003e0)/1000) \u003e= 1\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "annotations": {
+                        "description": "Storage Client Operator ({{ $labels.storage_consumer_name }}) differs by more than 1 minor version. Client configuration may be incompatible and unsupported in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "message": "Storage Client Operator ({{ $labels.storage_consumer_name }}) differs by more than 1 minor version in namespace:cluster {{ $labels.namespace }}:{{ $labels.managedBy }}.",
+                        "severity_level": "critical"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "critical"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        },
+        {
+            "orgId": 1,
+            "name": "storage-cluster-alerts.rules",
+            "folder": "RHOCP_OPS_EXTRA/openshift-storage-ocs-prometheus-rules.yaml",
+            "interval": "1m",
+            "rules": [
+                {
+                    "uid": "56031a91-8f77-5579-8e39-34c5e429d839",
+                    "title": "CephMonLowNumber",
+                    "condition": "threshold",
+                    "data": [
+                        {
+                            "refId": "query",
+                            "queryType": "prometheus",
+                            "relativeTimeRange": {
+                                "from": 660,
+                                "to": 60
+                            },
+                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "model": {
+                                "datasource": {
+                                    "type": "prometheus",
+                                    "uid": "ceuoby3nl4qgwc"
+                                },
+                                "expr": "((count by (managedBy, namespace) (ceph_mon_metadata)\u003c5) - on(managedBy,namespace) group_right() (ocs_storagecluster_failure_domain_count\u003e=5)) \u003c 0\n",
+                                "instant": true,
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "range": false,
+                                "refId": "query"
+                            }
+                        },
+                        {
+                            "refId": "prometheus_math",
+                            "queryType": "math",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "is_number($query) || is_nan($query) || is_inf($query)",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "prometheus_math",
+                                "type": "math"
+                            }
+                        },
+                        {
+                            "refId": "threshold",
+                            "queryType": "threshold",
+                            "relativeTimeRange": {
+                                "from": 0,
+                                "to": 0
+                            },
+                            "datasourceUid": "__expr__",
+                            "model": {
+                                "conditions": [
+                                    {
+                                        "evaluator": {
+                                            "params": [
+                                                0
+                                            ],
+                                            "type": "gt"
+                                        }
+                                    }
+                                ],
+                                "datasource": {
+                                    "IsPrunable": false,
+                                    "access": "",
+                                    "apiVersion": "",
+                                    "basicAuth": false,
+                                    "basicAuthUser": "",
+                                    "created": "0001-01-01T00:00:00Z",
+                                    "database": "",
+                                    "id": -100,
+                                    "isDefault": false,
+                                    "jsonData": {},
+                                    "name": "__expr__",
+                                    "readOnly": false,
+                                    "secureJsonData": {},
+                                    "type": "__expr__",
+                                    "uid": "__expr__",
+                                    "updated": "0001-01-01T00:00:00Z",
+                                    "url": "",
+                                    "user": "",
+                                    "withCredentials": false
+                                },
+                                "expression": "prometheus_math",
+                                "intervalMs": 1000,
+                                "maxDataPoints": 43200,
+                                "refId": "threshold",
+                                "type": "threshold"
+                            }
+                        }
+                    ],
+                    "noDataState": "OK",
+                    "execErrState": "OK",
+                    "annotations": {
+                        "description": "The number of failure zones available allow to increase the number of Ceph monitors from 3 to 5 in order to improve cluster resilience.",
+                        "message": "The current number of Ceph monitors can be increased in order to improve cluster resilience.",
+                        "runbook_url": "https://github.com/openshift/runbooks/blob/master/alerts/openshift-container-storage-operator/CephMonLowNumber.md",
+                        "severity_level": "info",
+                        "storage_type": "ceph"
+                    },
+                    "labels": {
+                        "__converted_prometheus_rule__": "true",
+                        "severity": "info"
+                    },
+                    "isPaused": false,
+                    "missing_series_evals_to_resolve": 1
+                }
+            ]
+        }
+    ]
+}
