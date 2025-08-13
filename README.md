@@ -51,9 +51,8 @@ Make the script executable and run it with the required arguments.
 
 ```bash
 chmod +x upload-grafana-rules.sh
-```bash
 ./upload-grafana-rules.sh <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json> [ORG_NAME]
-
+```
 
 **Arguments:**
 * **`GRAFANA_URL`**: The base URL of your Grafana instance (e.g., `https://grafana.example.com`).
@@ -62,25 +61,28 @@ chmod +x upload-grafana-rules.sh
 
 ### Examples
 
-**1. Upload to the default organization:**
+**Upload to the default organization:**
+
 ```bash
-./upload-grafana-rules.sh [https://my-grafana.com](https://my-grafana.com) glsa_xxxxxxxxxx grafana_provisioning_rules/openshift-dns.rules.json
+./upload-grafana-rules.sh [https://my-grafana.com](https://my-grafana.com) glsa_xxxxxxxxxx \
+grafana_provisioning_rules/openshift-dns.rules.json
+```
 
+### 📜 `delete-grafana-rules.sh`
 
-**2. delete all rules defined in the openshift-dns.rules json file: **
 This script reads the same JSON file, extracts the Unique ID (uid) of every rule, and sends a DELETE request to Grafana for each one.
 
-Usage
+#### **Usage**
 Make the script executable and run it with the same arguments you would use for uploading.
 
-Bash
-
-chmod +x delete-grafana-rules.sh
 ```bash
-./delete-grafana-rules.sh <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json> [ORG_NAME]
-Example
-Delete all rules defined in the openshift-dns.rules.json file
+chmod +x delete-grafana-rules.sh
+./delete-grafana-rules.sh <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json>
+```
 
-Bash
+### Example
+**Delete all rules defined in the openshift-dns.rules.json file**
 
+```Bash
 ./delete-grafana-rules.sh https://my-grafana.com glsa_xxxxxxxxxx grafana_provisioning_rules/openshift-dns.rules.json
+```
