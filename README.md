@@ -51,7 +51,7 @@ Make the script executable and run it with the required arguments.
 
 ```bash
 chmod +x upload-grafana-rules.sh
-./upload-grafana-rules.sh <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json> [ORG_NAME]
+./upload-grafana-rules.sh <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json>
 ```
 
 **Arguments:**
@@ -84,5 +84,6 @@ chmod +x delete-grafana-rules.sh
 **Delete all rules defined in the openshift-dns.rules.json file**
 
 ```Bash
-./delete-grafana-rules.sh https://my-grafana.com glsa_xxxxxxxxxx grafana_provisioning_rules/openshift-dns.rules.json
+./delete-grafana-rules.sh https://my-grafana.com glsa_xxxxxxxxxx \
+grafana_provisioning_rules/openshift-dns.rules.json
 ```
