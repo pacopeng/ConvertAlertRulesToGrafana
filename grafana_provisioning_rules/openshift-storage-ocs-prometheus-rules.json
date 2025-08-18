@@ -19,11 +19,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_health_status\n",
                                 "instant": true,
@@ -45,7 +45,7 @@
                     "record": {
                         "metric": "odf_system_health_status",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -61,11 +61,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_cluster_total_bytes\n",
                                 "instant": true,
@@ -87,7 +87,7 @@
                     "record": {
                         "metric": "odf_system_raw_capacity_total_bytes",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -103,11 +103,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_cluster_total_used_raw_bytes\n",
                                 "instant": true,
@@ -129,7 +129,7 @@
                     "record": {
                         "metric": "odf_system_raw_capacity_used_bytes",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -145,11 +145,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace, managedBy, job, service) (rate(ceph_pool_wr[1m]) + rate(ceph_pool_rd[1m]))\n",
                                 "instant": true,
@@ -171,7 +171,7 @@
                     "record": {
                         "metric": "odf_system_iops_total_bytes",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -187,11 +187,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace, managedBy, job, service) (rate(ceph_pool_wr_bytes[1m]) + rate(ceph_pool_rd_bytes[1m]))\n",
                                 "instant": true,
@@ -213,7 +213,7 @@
                     "record": {
                         "metric": "odf_system_throughput_total_bytes",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -229,11 +229,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace, managedBy, job, service)\n(\n  topk by (ceph_daemon) (1, label_replace(label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"}, \"instance\", \"$1\", \"exported_instance\", \"(.*)\"), \"device\", \"$1\", \"device\", \"/dev/(.*)\")) \n  * on(instance, device) group_left() topk by (instance,device) \n  (1,\n    (\n      (  \n          rate(node_disk_read_time_seconds_total[1m]) / (clamp_min(rate(node_disk_reads_completed_total[1m]), 1))\n      ) +\n      (\n          rate(node_disk_write_time_seconds_total[1m]) / (clamp_min(rate(node_disk_writes_completed_total[1m]), 1))\n      )\n    )\n  )\n)\n",
                                 "instant": true,
@@ -255,7 +255,7 @@
                     "record": {
                         "metric": "odf_system_latency_seconds",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -271,11 +271,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum (ocs_objectbucket_objects_total)\n",
                                 "instant": true,
@@ -297,7 +297,7 @@
                     "record": {
                         "metric": "odf_system_objects_total",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -313,11 +313,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum (ocs_objectbucket_count_total)\n",
                                 "instant": true,
@@ -339,7 +339,7 @@
                     "record": {
                         "metric": "odf_system_bucket_count",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 }
@@ -363,11 +363,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(\n  ocs_rbd_client_blocklisted{node=~\".+\"} == 1\n)\nand on(node) (\n  kube_pod_container_status_waiting_reason{reason=\"CreateContainerError\"}\n  * on(pod, namespace, managedBy) group_left(node)\n  kube_pod_info\n) \u003e 0\n",
                                 "instant": true,
@@ -498,11 +498,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "pod:container_cpu_usage:sum{pod=~\"rook-ceph-osd-.*\"} / on(pod) kube_pod_resource_limit{resource='cpu',pod=~\"rook-ceph-osd-.*\"} \u003e 0.80\n",
                                 "instant": true,
@@ -624,11 +624,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "pod:container_cpu_usage:sum{pod=~\"rook-ceph-mds.*\"}/ on(pod) kube_pod_resource_limit{resource='cpu',pod=~\"rook-ceph-mds.*\"} \u003e 0.67\n",
                                 "instant": true,
@@ -759,11 +759,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ocs_rgw_health_status{job=\"ocs-metrics-exporter\"} == 2\nor\nkube_deployment_status_replicas_ready{deployment=~\"rook-ceph-rgw-.*\"} \u003c kube_deployment_spec_replicas{deployment=~\"rook-ceph-rgw-.*\"}\n",
                                 "instant": true,
@@ -895,11 +895,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "((count by(namespace, managedBy) (ocs_mirror_daemon_count{job=\"ocs-metrics-exporter\"} == 0)) * on(namespace, managedBy) group_left() (count by(namespace, managedBy) (ocs_pool_mirroring_status{job=\"ocs-metrics-exporter\"} == 1))) \u003e 0\n",
                                 "instant": true,
@@ -1023,11 +1023,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ocs_pool_mirroring_image_health{job=\"ocs-metrics-exporter\"}  * on (namespace, managedBy) group_left() (max by(namespace, managedBy) (ocs_pool_mirroring_status{job=\"ocs-metrics-exporter\"}))) == 1\n",
                                 "instant": true,
@@ -1152,11 +1152,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ocs_pool_mirroring_image_health{job=\"ocs-metrics-exporter\"}  * on (namespace, managedBy) group_left() (max by(namespace, managedBy) (ocs_pool_mirroring_status{job=\"ocs-metrics-exporter\"}))) == 2\n",
                                 "instant": true,
@@ -1281,11 +1281,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ocs_pool_mirroring_image_health{job=\"ocs-metrics-exporter\"}  * on (namespace, managedBy) group_left() (max by(namespace, managedBy) (ocs_pool_mirroring_status{job=\"ocs-metrics-exporter\"}))) == 3\n",
                                 "instant": true,
@@ -1410,11 +1410,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ocs_rbd_mirror_image_state{job=\"ocs-metrics-exporter\"} * on(image,pool_name) group_left(name,namespace,managedBy) ocs_rbd_pv_metadata{job=\"ocs-metrics-exporter\"} == 1\n",
                                 "instant": true,
@@ -1538,11 +1538,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ocs_rbd_mirror_image_state{job=\"ocs-metrics-exporter\"} * on(image,pool_name) group_left(name,namespace,managedBy) ocs_rbd_pv_metadata{job=\"ocs-metrics-exporter\"} == 0\n",
                                 "instant": true,
@@ -1674,11 +1674,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ocs_storagecluster_kms_connection_status{job=\"ocs-metrics-exporter\"} == 1\n",
                                 "instant": true,
@@ -1810,11 +1810,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace, managedBy) (\n    topk by (ceph_daemon) (1, label_replace(label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"}, \"instance\", \"$1\", \"exported_instance\", \"(.*)\"), \"device\", \"$1\", \"device\", \"/dev/(.*)\")) \n  * on(instance, device) group_left topk by (instance,device) \n    (1,\n      (\n        rate(node_disk_read_time_seconds_total[1m]) / (clamp_min(rate(node_disk_reads_completed_total[1m]), 1))\n      )\n    )\n)\n",
                                 "instant": true,
@@ -1834,7 +1834,7 @@
                     "record": {
                         "metric": "cluster:ceph_disk_latency_read:join_ceph_node_disk_rate1m",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1850,11 +1850,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace, managedBy) (\n    topk by (ceph_daemon) (1, label_replace(label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"}, \"instance\", \"$1\", \"exported_instance\", \"(.*)\"), \"device\", \"$1\", \"device\", \"/dev/(.*)\")) \n  * on(instance, device) group_left topk by (instance,device) \n    (1,\n      (\n        rate(node_disk_write_time_seconds_total[1m]) / (clamp_min(rate(node_disk_writes_completed_total[1m]), 1))\n      )\n    )\n)\n",
                                 "instant": true,
@@ -1874,7 +1874,7 @@
                     "record": {
                         "metric": "cluster:ceph_disk_latency_write:join_ceph_node_disk_rate1m",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 }
@@ -1898,11 +1898,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ocs_objectbucketclaim_info * on (namespace, objectbucket, managedBy) group_left() (ocs_objectbucket_used_bytes/ocs_objectbucket_max_bytes)) \u003e 0.80\n",
                                 "instant": true,
@@ -2026,11 +2026,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ocs_objectbucketclaim_info * on (namespace, managedBy, objectbucket) group_left() (ocs_objectbucket_objects_total/ocs_objectbucket_max_objects)) \u003e 0.80\n",
                                 "instant": true,
@@ -2154,11 +2154,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ocs_objectbucketclaim_info * on (namespace, managedBy, objectbucket) group_left() (ocs_objectbucket_used_bytes/ocs_objectbucket_max_bytes)) \u003e= 1\n",
                                 "instant": true,
@@ -2281,11 +2281,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ocs_objectbucketclaim_info * on (namespace, managedBy, objectbucket) group_left() (ocs_objectbucket_objects_total/ocs_objectbucket_max_objects)) \u003e= 1\n",
                                 "instant": true,
@@ -2416,11 +2416,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(time() - 120) \u003e (ocs_storage_client_last_heartbeat \u003e 0)\n",
                                 "instant": true,
@@ -2541,11 +2541,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(time() - 300) \u003e (ocs_storage_client_last_heartbeat \u003e 0)\n",
                                 "instant": true,
@@ -2666,11 +2666,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "floor((ocs_storage_provider_operator_version\u003e0)/1000) - ignoring(storage_consumer_name) group_right() floor((ocs_storage_client_operator_version\u003e0)/1000) == 1\n",
                                 "instant": true,
@@ -2791,11 +2791,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "floor((ocs_storage_provider_operator_version\u003e0)/1000) - ignoring(storage_consumer_name) group_right() floor((ocs_storage_client_operator_version\u003e0)/1000) \u003e 1 or floor((ocs_storage_client_operator_version\u003e0)/1000) - ignoring(storage_consumer_name) group_left() floor((ocs_storage_provider_operator_version\u003e0)/1000) \u003e= 1\n",
                                 "instant": true,
@@ -2924,11 +2924,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "((count by (managedBy, namespace) (ceph_mon_metadata)\u003c5) - on(managedBy,namespace) group_right() (ocs_storagecluster_failure_domain_count\u003e=5)) \u003c 0\n",
                                 "instant": true,

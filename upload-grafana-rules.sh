@@ -5,17 +5,38 @@ set -e # Exit immediately if a command exits with a non-zero status.
 GRAFANA_URL="$1"
 GRAFANA_API_KEY="$2"
 RULES_FILE="$3"
+DATASOURCE_UID="$4"
+PLACEHOLDER="REPLACE_ME_WITH_YOUR_DATASOURCE"
 
 # --- Usage Instructions ---
-if [[ $# -ne 3 ]]; then
+if [[ $# -ne 4 ]]; then
   echo "This script uploads Grafana alert rules from a provisioning JSON file using the REST API."
+  echo "It temporarily replaces a datasource placeholder in the file before uploading."
   echo ""
-  echo "Usage: $0 <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json>"
-  echo "Example: $0 http://localhost:3000 glsa_xxxxxxxxxxxxxxxxxxxx my-rules.json"
+  echo "Usage: $0 <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json> <DATASOURCE_UID>"
+  echo "Example: $0 https://my-grafana.com glsa_xxxxxxxxxxxx my-rules.json ds_uid_goes_here"
   exit 1
 fi
 
+# --- File Templating & Cleanup ---
+# This function reverts the file to its original state.
+# Thanks to 'set -e', this part of the script will only be reached if all preceding commands succeed.
+cleanup() {
+  echo "--------------------------------------------------"
+  echo "✅ Script finished successfully. Rolling back changes to $RULES_FILE..."
+  # Use -i '' for macOS compatibility. For Linux, you can just use -i.
+  sed -i '' "s/$DATASOURCE_UID/$PLACEHOLDER/g" "$RULES_FILE"
+  echo "Rollback complete."
+}
+# Register the cleanup function to be called on successful script exit.
+trap cleanup EXIT
+
 # --- Sanitize URL ---
+# Add https:// if no scheme is present
+if ! [[ "$GRAFANA_URL" =~ ^https?:// ]]; then
+  echo "-> No http/https scheme found in URL. Prepending https://."
+  GRAFANA_URL="https://$GRAFANA_URL"
+fi
 # Remove any trailing slashes from the URL for robustness
 GRAFANA_URL="${GRAFANA_URL%/}"
 
@@ -30,6 +51,13 @@ if ! command -v curl &> /dev/null; then
 fi
 
 echo "Processing file: $RULES_FILE"
+
+# --- Temporary Datasource Replacement ---
+echo "-> Temporarily replacing placeholder '$PLACEHOLDER' with datasource UID '$DATASOURCE_UID'..."
+# Use -i '' for macOS compatibility. For Linux, you can just use -i.
+sed -i '' "s/$PLACEHOLDER/$DATASOURCE_UID/g" "$RULES_FILE"
+echo "Replacement complete."
+
 
 # --- Main Logic ---
 
@@ -70,14 +98,17 @@ for (( i=0; i<$num_groups; i++ )); do
   if [[ -z "$folder_uid" ]]; then
     echo "  -> Folder '$folder_name' not found. Creating it..."
     # If the folder doesn't exist, create it and capture the new UID
-    folder_uid=$(curl -s -X POST \
+    response=$(curl -s -X POST \
       -H "Content-Type: application/json" \
       -H "Authorization: Bearer $GRAFANA_API_KEY" \
       -d "{\"title\": \"$folder_name\"}" \
-      "$GRAFANA_URL/api/folders" | jq -r '.uid')
+      "$GRAFANA_URL/api/folders")
     
+    folder_uid=$(echo "$response" | jq -r '.uid')
+
     if [[ -z "$folder_uid" || "$folder_uid" == "null" ]]; then
         echo "  -> ERROR: Failed to create folder '$folder_name'. Aborting."
+        echo "  -> API Response: $response"
         exit 1
     fi
     echo "  -> Created folder with UID: $folder_uid"
@@ -86,7 +117,6 @@ for (( i=0; i<$num_groups; i++ )); do
   fi
 
   # --- Step 2: Prepare the Payload for each Rule ---
-  # The new API creates rules one by one, not as a group.
   num_rules=$(echo "$group_json" | jq '.rules | length')
   echo "  -> Found $num_rules rule(s) in group '$group_name'."
 
@@ -100,8 +130,6 @@ for (( i=0; i<$num_groups; i++ )); do
 
     # --- Step 3: Upload the individual Rule ---
     echo "    -> Uploading rule '$rule_title'..."
-    
-    # The new API endpoint for creating/updating a single alert rule.
     api_endpoint="$GRAFANA_URL/api/v1/provisioning/alert-rules"
 
     # Make the POST request to create or update the alert rule
@@ -116,9 +144,9 @@ for (( i=0; i<$num_groups; i++ )); do
     else
       echo "    -> ERROR: Failed to upload rule '$rule_title' (HTTP $response_code)."
       # To see the full error from Grafana, you can re-run the curl without '-o /dev/null'
+      exit 1 # Exit on failure
     fi
   done
 done
 
-echo "--------------------------------------------------"
-echo "Script finished."
+# The 'trap cleanup EXIT' at the top of the script will handle the final messages and rollback.

@@ -19,11 +19,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace) (ceph_mds_metadata{job=\"rook-ceph-mgr\"} == 1) \u003c 2\n",
                                 "instant": true,
@@ -155,11 +155,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "label_replace((up{job=\"rook-ceph-mgr\"} == 0 or absent(up{job=\"rook-ceph-mgr\"})), \"namespace\", \"openshift-storage\", \"\", \"\")\n",
                                 "instant": true,
@@ -283,11 +283,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace) (kube_deployment_spec_replicas{deployment=~\"rook-ceph-mgr-.*\"}) \u003c 1\n",
                                 "instant": true,
@@ -419,11 +419,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "cluster:ceph_node_down:join_kube == 0\n",
                                 "instant": true,
@@ -555,11 +555,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "kube_node_status_condition{condition=\"Ready\",job=\"kube-state-metrics\",status=\"true\"} * on (node) group_right() max by (node, namespace) (label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"},\"node\",\"$1\",\"exported_instance\",\"(.*)\"))\n",
                                 "instant": true,
@@ -579,7 +579,7 @@
                     "record": {
                         "metric": "cluster:ceph_node_down:join_kube",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -595,11 +595,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "avg by (namespace) (topk by (ceph_daemon, namespace) (1, label_replace(label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"}, \"instance\", \"$1\", \"exported_instance\", \"(.*)\"), \"device\", \"$1\", \"device\", \"/dev/(.*)\")) * on(instance, device) group_right(ceph_daemon, namespace) topk by (instance, device, namespace) (1,(irate(node_disk_read_time_seconds_total[1m]) + irate(node_disk_write_time_seconds_total[1m]) / (clamp_min(irate(node_disk_reads_completed_total[1m]), 1) + irate(node_disk_writes_completed_total[1m])))))\n",
                                 "instant": true,
@@ -619,7 +619,7 @@
                     "record": {
                         "metric": "cluster:ceph_disk_latency:join_ceph_node_disk_irate1m",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 }
@@ -643,11 +643,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_health_status{job=\"rook-ceph-mgr\"} \u003e 1\n",
                                 "instant": true,
@@ -771,11 +771,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_health_status{job=\"rook-ceph-mgr\"} == 1\n",
                                 "instant": true,
@@ -899,11 +899,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "count by (namespace) (count by (ceph_version, namespace) (ceph_osd_metadata{job=\"rook-ceph-mgr\", ceph_version != \"\"})) \u003e 1\n",
                                 "instant": true,
@@ -1027,11 +1027,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "count by (namespace) (count by (ceph_version, namespace) (ceph_mon_metadata{job=\"rook-ceph-mgr\", ceph_version != \"\"})) \u003e 1\n",
                                 "instant": true,
@@ -1163,11 +1163,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_cluster_total_used_raw_bytes / ceph_cluster_total_bytes \u003e 0.75\n",
                                 "instant": true,
@@ -1291,11 +1291,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_cluster_total_used_raw_bytes / ceph_cluster_total_bytes \u003e 0.80\n",
                                 "instant": true,
@@ -1419,11 +1419,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_cluster_total_used_raw_bytes / ceph_cluster_total_bytes \u003e= 0.85\n",
                                 "instant": true,
@@ -1554,11 +1554,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ceph_osd_metadata * on (ceph_daemon, namespace) group_right(device_class,hostname) (ceph_osd_stat_bytes_used / ceph_osd_stat_bytes)) \u003e= 0.80\n",
                                 "instant": true,
@@ -1682,11 +1682,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "changes(ceph_osd_up[5m]) \u003e= 10\n",
                                 "instant": true,
@@ -1809,11 +1809,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ceph_osd_metadata * on (ceph_daemon, namespace) group_right(device_class,hostname) (ceph_osd_stat_bytes_used / ceph_osd_stat_bytes)) \u003e= 0.75\n",
                                 "instant": true,
@@ -1937,11 +1937,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "label_replace((ceph_osd_in == 1 and ceph_osd_up == 0),\"disk\",\"$1\",\"ceph_daemon\",\"osd.(.*)\") + on(ceph_daemon, namespace) group_left(host, device) label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"},\"host\",\"$1\",\"exported_instance\",\"(.*)\")\n",
                                 "instant": true,
@@ -2065,11 +2065,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "label_replace((ceph_osd_in == 0 and ceph_osd_up == 0),\"disk\",\"$1\",\"ceph_daemon\",\"osd.(.*)\") + on(ceph_daemon, namespace) group_left(host, device) label_replace(ceph_disk_occupation{job=\"rook-ceph-mgr\"},\"host\",\"$1\",\"exported_instance\",\"(.*)\")\n",
                                 "instant": true,
@@ -2193,11 +2193,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_healthcheck_slow_ops \u003e 0\n",
                                 "instant": true,
@@ -2321,11 +2321,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_pg_undersized \u003e 0\n",
                                 "instant": true,
@@ -2449,11 +2449,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "ceph_pg_inconsistent \u003e 0\n",
                                 "instant": true,
@@ -2585,11 +2585,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(kubelet_volume_stats_used_bytes * on (namespace,persistentvolumeclaim) group_left(storageclass, provisioner) (kube_persistentvolumeclaim_info * on (storageclass)  group_left(provisioner) kube_storageclass_info {provisioner=~\"(.*rbd.csi.ceph.com)|(.*cephfs.csi.ceph.com)\"})) / (kubelet_volume_stats_capacity_bytes * on (namespace,persistentvolumeclaim) group_left(storageclass, provisioner) (kube_persistentvolumeclaim_info * on (storageclass)  group_left(provisioner) kube_storageclass_info {provisioner=~\"(.*rbd.csi.ceph.com)|(.*cephfs.csi.ceph.com)\"})) \u003e 0.75\n",
                                 "instant": true,
@@ -2713,11 +2713,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(kubelet_volume_stats_used_bytes * on (namespace,persistentvolumeclaim) group_left(storageclass, provisioner) (kube_persistentvolumeclaim_info * on (storageclass)  group_left(provisioner) kube_storageclass_info {provisioner=~\"(.*rbd.csi.ceph.com)|(.*cephfs.csi.ceph.com)\"})) / (kubelet_volume_stats_capacity_bytes * on (namespace,persistentvolumeclaim) group_left(storageclass, provisioner) (kube_persistentvolumeclaim_info * on (storageclass)  group_left(provisioner) kube_storageclass_info {provisioner=~\"(.*rbd.csi.ceph.com)|(.*cephfs.csi.ceph.com)\"})) \u003e 0.85\n",
                                 "instant": true,
@@ -2849,11 +2849,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ceph_pool_stored_raw * on (pool_id) group_left(name, namespace)ceph_pool_metadata) / ((ceph_pool_quota_bytes * on (pool_id) group_left(name, namespace)ceph_pool_metadata) \u003e 0) \u003e 0.70\n",
                                 "instant": true,
@@ -2977,11 +2977,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ceph_pool_stored_raw * on (pool_id) group_left(name, namespace)ceph_pool_metadata) / ((ceph_pool_quota_bytes * on (pool_id) group_left(name, namespace)ceph_pool_metadata) \u003e 0) \u003e 0.90\n",
                                 "instant": true,
@@ -3113,11 +3113,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "count by (namespace) (ceph_mon_quorum_status{job=\"rook-ceph-mgr\"} == 1) \u003c= (floor(count by (namespace) (ceph_mon_metadata{job=\"rook-ceph-mgr\"}) / 2) + 1)\n",
                                 "instant": true,
@@ -3241,11 +3241,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "count by (namespace) (kube_pod_status_phase{pod=~\"rook-ceph-mon-.*\", phase=~\"Running|running\"} == 1) \u003c 2\n",
                                 "instant": true,
@@ -3369,11 +3369,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(ceph_mon_metadata{job=\"rook-ceph-mgr\"} * on (ceph_daemon, namespace) group_left() (rate(ceph_mon_num_elections{job=\"rook-ceph-exporter\"}[5m]) * 60)) \u003e 0.95\n",
                                 "instant": true,
@@ -3505,11 +3505,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "count by (namespace) (ceph_osd_metadata{job=\"rook-ceph-mgr\"})\n",
                                 "instant": true,
@@ -3529,7 +3529,7 @@
                     "record": {
                         "metric": "job:ceph_osd_metadata:count",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -3545,11 +3545,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "count by (namespace) (kube_persistentvolume_info * on (storageclass) group_left(provisioner, namespace) kube_storageclass_info {provisioner=~\"(.*rbd.csi.ceph.com)|(.*cephfs.csi.ceph.com)|(.*topolvm.cybozu.com)\"})\n",
                                 "instant": true,
@@ -3569,7 +3569,7 @@
                     "record": {
                         "metric": "job:odf_system_pvs:count",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -3585,11 +3585,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace) (ceph_pool_rd{job=\"rook-ceph-mgr\"} + on(pool_id, namespace) ceph_pool_wr)\n",
                                 "instant": true,
@@ -3609,7 +3609,7 @@
                     "record": {
                         "metric": "job:ceph_pools_iops:total",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -3625,11 +3625,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace) (ceph_pool_rd_bytes{job=\"rook-ceph-mgr\"} + on(pool_id, namespace) ceph_pool_wr_bytes)\n",
                                 "instant": true,
@@ -3649,7 +3649,7 @@
                     "record": {
                         "metric": "job:ceph_pools_iops_bytes:total",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -3665,11 +3665,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "count by (namespace) (count by (ceph_version, namespace) (ceph_mon_metadata{job=\"rook-ceph-mgr\"} or ceph_osd_metadata{job=\"rook-ceph-mgr\"} or ceph_rgw_metadata{job=\"rook-ceph-mgr\"} or ceph_mds_metadata{job=\"rook-ceph-mgr\"} or ceph_mgr_metadata{job=\"rook-ceph-mgr\"}))\n",
                                 "instant": true,
@@ -3689,7 +3689,7 @@
                     "record": {
                         "metric": "job:ceph_versions_running:count",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 }

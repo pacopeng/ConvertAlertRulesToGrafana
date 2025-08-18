@@ -19,11 +19,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_bucket_status{bucket_name=~\".*\"} == 0\n",
                                 "instant": true,
@@ -146,11 +146,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_namespace_bucket_status{bucket_name=~\".*\"} == 0\n",
                                 "instant": true,
@@ -273,11 +273,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_bucket_quota{bucket_name=~\".*\"} \u003e 80\n",
                                 "instant": true,
@@ -400,11 +400,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_bucket_quota{bucket_name=~\".*\"} \u003e= 100\n",
                                 "instant": true,
@@ -527,11 +527,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_bucket_capacity{bucket_name=~\".*\"} \u003e 80\n",
                                 "instant": true,
@@ -654,11 +654,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_bucket_capacity{bucket_name=~\".*\"} \u003e 95\n",
                                 "instant": true,
@@ -789,11 +789,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_odf_health_status\n",
                                 "instant": true,
@@ -815,7 +815,7 @@
                     "record": {
                         "metric": "odf_system_health_status",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -831,11 +831,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_total_usage\n",
                                 "instant": true,
@@ -857,7 +857,7 @@
                     "record": {
                         "metric": "odf_system_raw_capacity_used_bytes",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -873,11 +873,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace, managedBy, job, service) (rate(NooBaa_providers_ops_read_num[5m]) + rate(NooBaa_providers_ops_write_num[5m]))\n",
                                 "instant": true,
@@ -899,7 +899,7 @@
                     "record": {
                         "metric": "odf_system_iops_total_bytes",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -915,11 +915,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (namespace, managedBy, job, service) (rate(NooBaa_providers_bandwidth_read_size[5m]) + rate(NooBaa_providers_bandwidth_write_size[5m]))\n",
                                 "instant": true,
@@ -941,7 +941,7 @@
                     "record": {
                         "metric": "odf_system_throughput_total_bytes",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -957,11 +957,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(NooBaa_num_buckets + NooBaa_num_buckets_claims)\n",
                                 "instant": true,
@@ -983,7 +983,7 @@
                     "record": {
                         "metric": "odf_system_bucket_count",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -999,11 +999,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(NooBaa_num_objects + NooBaa_num_objects_buckets_claims)\n",
                                 "instant": true,
@@ -1025,7 +1025,7 @@
                     "record": {
                         "metric": "odf_system_objects_total",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 }
@@ -1049,11 +1049,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum_over_time(sum by (replication_id) (NooBaa_replication_last_cycle_writes_size)[1y:6m])\n",
                                 "instant": true,
@@ -1073,7 +1073,7 @@
                     "record": {
                         "metric": "noobaa_replication_total_writes_size",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1089,11 +1089,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum_over_time(sum by (replication_id) (NooBaa_replication_last_cycle_writes_num)[1y:6m])\n",
                                 "instant": true,
@@ -1113,7 +1113,7 @@
                     "record": {
                         "metric": "noobaa_replication_total_writes_num",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1129,11 +1129,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum_over_time(sum by (replication_id) (NooBaa_replication_last_cycle_error_writes_size)[1y:6m])\n",
                                 "instant": true,
@@ -1153,7 +1153,7 @@
                     "record": {
                         "metric": "noobaa_replication_total_error_writes_size",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1169,11 +1169,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum_over_time(sum by (replication_id) (NooBaa_replication_last_cycle_error_writes_num)[1y:6m])\n",
                                 "instant": true,
@@ -1193,7 +1193,7 @@
                     "record": {
                         "metric": "noobaa_replication_total_error_writes_num",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1209,11 +1209,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "count_over_time(count by (replication_id) (NooBaa_replication_last_cycle_writes_size)[1y:6m])\n",
                                 "instant": true,
@@ -1233,7 +1233,7 @@
                     "record": {
                         "metric": "noobaa_replication_total_cycles",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 }
@@ -1257,11 +1257,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(NooBaa_num_unhealthy_buckets + NooBaa_num_unhealthy_bucket_claims)\n",
                                 "instant": true,
@@ -1281,7 +1281,7 @@
                     "record": {
                         "metric": "job:noobaa_total_unhealthy_buckets:sum",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1297,11 +1297,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_num_unhealthy_namespace_buckets\n",
                                 "instant": true,
@@ -1321,7 +1321,7 @@
                     "record": {
                         "metric": "job:noobaa_total_unhealthy_namespace_buckets",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1337,11 +1337,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(NooBaa_num_buckets + NooBaa_num_buckets_claims)\n",
                                 "instant": true,
@@ -1361,7 +1361,7 @@
                     "record": {
                         "metric": "job:noobaa_bucket_count:sum",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1377,11 +1377,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_num_namespace_buckets\n",
                                 "instant": true,
@@ -1401,7 +1401,7 @@
                     "record": {
                         "metric": "job:noobaa_namespace_bucket_count",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1417,11 +1417,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(NooBaa_num_objects + NooBaa_num_objects_buckets_claims)\n",
                                 "instant": true,
@@ -1441,7 +1441,7 @@
                     "record": {
                         "metric": "job:noobaa_total_object_count:sum",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1457,11 +1457,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_accounts_num\n",
                                 "instant": true,
@@ -1481,7 +1481,7 @@
                     "record": {
                         "metric": "noobaa_accounts_num",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1497,11 +1497,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_total_usage\n",
                                 "instant": true,
@@ -1521,7 +1521,7 @@
                     "record": {
                         "metric": "noobaa_total_usage",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 }
@@ -1545,11 +1545,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_resource_status{resource_name=~\".*\"} == 0\n",
                                 "instant": true,
@@ -1672,11 +1672,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_namespace_resource_status{namespace_resource_name=~\".*\"} == 0\n",
                                 "instant": true,
@@ -1807,11 +1807,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_system_capacity \u003e 85\n",
                                 "instant": true,
@@ -1934,11 +1934,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_system_capacity \u003e 95\n",
                                 "instant": true,
@@ -2061,11 +2061,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "NooBaa_system_capacity == 100\n",
                                 "instant": true,

@@ -19,11 +19,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "increase(coredns_panics_total[10m]) \u003e 0",
                                 "instant": true,
@@ -144,11 +144,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "histogram_quantile(.95, sum(rate(coredns_health_request_duration_seconds_bucket[5m])) by (instance, le)) \u003e 10",
                                 "instant": true,
@@ -269,11 +269,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(sum by(namespace) (rate(coredns_dns_responses_total{rcode=\"SERVFAIL\"}[5m]))\n  /\nsum by(namespace) (rate(coredns_dns_responses_total[5m])))\n\u003e 0.01\n",
                                 "instant": true,

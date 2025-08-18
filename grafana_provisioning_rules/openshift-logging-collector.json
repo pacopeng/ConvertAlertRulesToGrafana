@@ -19,11 +19,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by(cluster)(log_collected_bytes_total)\n",
                                 "instant": true,
@@ -43,7 +43,7 @@
                     "record": {
                         "metric": "cluster:log_collected_bytes_total:sum",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -59,11 +59,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by(cluster)(log_logged_bytes_total)\n",
                                 "instant": true,
@@ -83,7 +83,7 @@
                     "record": {
                         "metric": "cluster:log_logged_bytes_total:sum",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -99,11 +99,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by(pod, namespace, app_kubernetes_io_part_of)(rate(vector_component_errors_total[2m])) or sum by(pod, namespace, app_kubernetes_io_part_of)(rate(fluentd_output_status_num_errors[2m]))\n",
                                 "instant": true,
@@ -123,7 +123,7 @@
                     "record": {
                         "metric": "collector:log_num_errors:sum_rate",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -139,11 +139,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by(pod, namespace, app_kubernetes_io_part_of)(rate(vector_component_received_events_total[2m])) or sum by(pod, namespace, app_kubernetes_io_part_of)(rate(fluentd_output_status_emit_records[2m]))\n",
                                 "instant": true,
@@ -163,7 +163,7 @@
                     "record": {
                         "metric": "collector:received_events:sum_rate",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 }
@@ -187,11 +187,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "up{app_kubernetes_io_component = \"collector\", app_kubernetes_io_part_of = \"cluster-logging\"} == 0\n",
                                 "instant": true,
@@ -313,11 +313,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "100 * (\n    collector:log_num_errors:sum_rate{app_kubernetes_io_part_of = \"cluster-logging\"}\n  /\n    collector:received_events:sum_rate{app_kubernetes_io_part_of = \"cluster-logging\"}\n  ) \u003e 0.001\n",
                                 "instant": true,
@@ -439,11 +439,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "100 * (\n    collector:log_num_errors:sum_rate{app_kubernetes_io_part_of = \"cluster-logging\"}\n  /\n    collector:received_events:sum_rate{app_kubernetes_io_part_of = \"cluster-logging\"}\n  ) \u003e 0.05\n",
                                 "instant": true,
@@ -565,11 +565,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by (pod,plugin_id) ( 0 * (deriv(fluentd_output_status_emit_records[1m] offset 1h)))  + on(pod,plugin_id)  ( deriv(fluentd_output_status_buffer_queue_length[10m]) \u003e 0 and delta(fluentd_output_status_buffer_queue_length[1h]) \u003e 1 )\n",
                                 "instant": true,
@@ -691,11 +691,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(kube_pod_labels{namespace=\"openshift-logging\",label_component='elasticsearch'}) \u003e 0\n",
                                 "instant": true,
@@ -818,11 +818,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(kube_pod_labels{namespace=\"openshift-logging\", label_implementation='fluentd', label_app_kubernetes_io_managed_by=\"cluster-logging-operator\"}) \u003e 0\n",
                                 "instant": true,
@@ -945,11 +945,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(kube_pod_labels{namespace=\"openshift-logging\",label_component='kibana'}) \u003e 0\n",
                                 "instant": true,
@@ -1072,11 +1072,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "(label_replace(sum by(hostname) (vector_buffer_byte_size{component_kind='sink', buffer_type='disk'}), 'instance', '$1', 'hostname', '(.*)') \n/ on(instance) group_left() sum by(instance) (node_filesystem_size_bytes{mountpoint='/var'})) * 100  \u003e 15\n",
                                 "instant": true,

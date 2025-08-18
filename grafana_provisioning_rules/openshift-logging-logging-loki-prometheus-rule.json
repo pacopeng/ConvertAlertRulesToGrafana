@@ -19,11 +19,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(\n  job_namespace_route_statuscode:loki_request_duration_seconds_count:irate1m{status_code=~\"5..\"}\n) by (job, namespace, route)\n/\nsum(\n  job_namespace_route_statuscode:loki_request_duration_seconds_count:irate1m\n) by (job, namespace, route)\n* 100\n\u003e 10\n",
                                 "instant": true,
@@ -145,11 +145,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(\n  code_handler_job_namespace:lokistack_gateway_http_requests:irate1m{code=~\"5..\", handler=\"push\"}\n) by (job, namespace)\n/\nsum(\n  code_handler_job_namespace:lokistack_gateway_http_requests:irate1m{handler=\"push\"}\n) by (job, namespace)\n* 100\n\u003e 10\n",
                                 "instant": true,
@@ -271,11 +271,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(\n  code_handler_job_namespace:lokistack_gateway_http_requests:irate1m{code=~\"5..\", handler=~\"query|query_range|label|labels|label_values\"}\n) by (job, namespace)\n/\nsum(\n  code_handler_job_namespace:lokistack_gateway_http_requests:irate1m{handler=~\"query|query_range|label|labels|label_values\"}\n) by (job, namespace)\n* 100\n\u003e 10\n",
                                 "instant": true,
@@ -397,11 +397,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(\n  increase(\n    loki_panic_total[10m]\n  )\n) by (job, namespace)\n\u003e 0\n",
                                 "instant": true,
@@ -522,11 +522,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "histogram_quantile(0.99,\n  sum(\n    irate(\n      loki_request_duration_seconds_bucket{route!~\"(?i).*tail.*\"}[1m]\n    )\n  ) by (job, le, namespace, route)\n)\n\u003e 1\n",
                                 "instant": true,
@@ -648,11 +648,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(\n  job_namespace_route_statuscode:loki_request_duration_seconds_count:irate1m{status_code=\"429\"}\n) by (job, namespace, route)\n/\nsum(\n  job_namespace_route_statuscode:loki_request_duration_seconds_count:irate1m\n) by (job, namespace, route)\n* 100\n\u003e 10\n",
                                 "instant": true,
@@ -774,11 +774,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "histogram_quantile(0.99,\n  sum(\n    job_le_namespace_operation:loki_boltdb_shipper_request_duration_seconds_bucket:rate5m{operation=\"WRITE\"}\n  ) by (job, le, namespace)\n)\n\u003e 1\n",
                                 "instant": true,
@@ -900,11 +900,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "histogram_quantile(0.99,\n  sum(\n    job_le_namespace_operation:loki_boltdb_shipper_request_duration_seconds_bucket:rate5m{operation=\"Shipper.Query\"}\n  ) by (job, le, namespace)\n)\n\u003e 5\n",
                                 "instant": true,
@@ -1026,11 +1026,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(\n  loki_ingester_wal_replay_flushing\n) by (job, namespace)\n\u003e 0\n",
                                 "instant": true,
@@ -1152,11 +1152,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "histogram_quantile(0.99,\n  sum(\n    rate(\n      loki_logql_querystats_latency_seconds_bucket[5m]\n    )\n  ) by (job, le, namespace)\n)\n\u003e 30\n",
                                 "instant": true,
@@ -1278,11 +1278,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum by(namespace, tenant, reason) (\n  irate(loki_discarded_samples_total{\n    reason!=\"rate_limited\",\n    reason!=\"per_stream_rate_limit\",\n    reason!=\"stream_limit\"}[2m])\n)\n\u003e 0\n",
                                 "instant": true,
@@ -1404,11 +1404,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum (\n  lokistack_status_condition{reason=\"StorageNeedsSchemaUpdate\",status=\"true\"}\n) by (stack_namespace, stack_name)\n\u003e 0\n",
                                 "instant": true,
@@ -1538,11 +1538,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(\n  irate(\n    http_requests_total{container=\"gateway\", group=\"logsv1\"}[1m]\n  )\n) by (code, handler, job, namespace)\n",
                                 "instant": true,
@@ -1562,7 +1562,7 @@
                     "record": {
                         "metric": "code_handler_job_namespace:lokistack_gateway_http_requests:irate1m",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1578,11 +1578,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(\n  irate(\n    loki_request_duration_seconds_count[1m]\n  )\n) by (job, namespace, route, status_code)\n",
                                 "instant": true,
@@ -1602,7 +1602,7 @@
                     "record": {
                         "metric": "job_namespace_route_statuscode:loki_request_duration_seconds_count:irate1m",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 },
@@ -1618,11 +1618,11 @@
                                 "from": 660,
                                 "to": 60
                             },
-                            "datasourceUid": "ceuoby3nl4qgwc",
+                            "datasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE",
                             "model": {
                                 "datasource": {
                                     "type": "prometheus",
-                                    "uid": "ceuoby3nl4qgwc"
+                                    "uid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                                 },
                                 "expr": "sum(\n  rate(\n    loki_boltdb_shipper_request_duration_seconds_bucket[5m]\n  )\n) by (job, le, namespace, operation)\n",
                                 "instant": true,
@@ -1642,7 +1642,7 @@
                     "record": {
                         "metric": "job_le_namespace_operation:loki_boltdb_shipper_request_duration_seconds_bucket:rate5m",
                         "from": "query",
-                        "targetDatasourceUid": "ceuoby3nl4qgwc"
+                        "targetDatasourceUid": "REPLACE_ME_WITH_YOUR_DATASOURCE"
                     },
                     "missing_series_evals_to_resolve": 1
                 }
