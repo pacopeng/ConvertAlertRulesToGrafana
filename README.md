@@ -7,7 +7,6 @@ This is particularly useful for migrating alert rules from one environment to an
 ---
 
 ## Included Rule Files
-
 The `grafana_provisioning_rules/` directory contains a set of out-of-the-box OpenShift Container Platform alert rules that have been converted into the Grafana provisioning format. These include:
 
 -   `openshift-dns.rules.json`
@@ -20,6 +19,7 @@ The `grafana_provisioning_rules/` directory contains a set of out-of-the-box Ope
 -   `openshift-storage-ocs-prometheus-rules.json`
 -   `openshift-storage-prometheus-ceph-rules.json`
 
+Note: Within the json file, each alert rules has a unique identifier.(UUID), the upload and delete scripts use this identifier to identify the rules in Grafana. If you want to upload the same json file for different orginization, you need to change the identifier in the json file.
 ---
 
 ## Prerequisites
@@ -58,14 +58,14 @@ chmod +x upload-grafana-rules.sh
 * **`GRAFANA_URL`**: The base URL of your Grafana instance (e.g., `https://grafana.example.com`).
 * **`GRAFANA_API_KEY`**: The API key you generated with the Editor role.
 * **`PATH_TO_RULES_FILE.json`**: The path to the JSON file containing the alert rules.
+* **`DATASOURCE_UID`**: The UID of the datasource where the rules should be uploaded.
 
 ### Examples
-
 **Upload to the default organization:**
 
 ```bash
 ./upload-grafana-rules.sh [https://my-grafana.com](https://my-grafana.com) glsa_xxxxxxxxxx \
-grafana_provisioning_rules/openshift-dns.rules.json
+grafana_provisioning_rules/openshift-dns.rules.json  ceuoby3nl4qgwc
 ```
 
 ### 📜 `delete-grafana-rules.sh`
