@@ -1,25 +1,25 @@
 # Grafana Alert Rule Management Scripts
 
-This repository contains a set of shell scripts designed to automate the management of Grafana alert rules using the Grafana REST API. These scripts allow you to upload and delete alert rules in bulk from a Grafana-provisioning-format JSON file.
+
+This repository contains a set of terraform files designed to automate the management of Grafana alert rules using the Grafana REST API. These files allow you to upload and delete alert rules in bulk from a Grafana-provisioning-format JSON file.
 
 This is particularly useful for migrating alert rules from one environment to another or for managing your Grafana alerts as code (GitOps).
 
 ---
 
 ## Included Rule Files
-The `grafana_provisioning_rules/` directory contains a set of out-of-the-box OpenShift Container Platform alert rules that have been converted into the Grafana provisioning format. These include:
+The ALL-In-One.tf file contains a set of out-of-the-box OpenShift Container Platform alert rules that have been converted into the Grafana provisioning format through the [import tool](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/alerting-migration/) with the grafana version 12.1.0 . These include:
 
--   `openshift-dns.rules.json`
--   `openshift-etcd.rules.json`
--   `openshift-logging-collector.json`
--   `openshift-logging-logging-loki-prometheus-rule.json`
--   `openshift-ovn-kubernetes-master-rules.json`
--   `openshift-ovn-kubernetes-networking-rules.json`
--   `openshift-storage-noobaa-prometheus-rules.json`
--   `openshift-storage-ocs-prometheus-rules.json`
--   `openshift-storage-prometheus-ceph-rules.json`
+-   `openshift-dns.rules`
+-   `openshift-etcd.rules`
+-   `openshift-logging-collector`
+-   `openshift-logging-logging-loki-prometheus-rule`
+-   `openshift-ovn-kubernetes-master-rules`
+-   `openshift-ovn-kubernetes-networking-rules`
+-   `openshift-storage-noobaa-prometheus-rules`
+-   `openshift-storage-ocs-prometheus-rules`
+-   `openshift-storage-prometheus-ceph-rules`
 
-Note: Within the json file, each alert rules has a unique identifier.(UUID), the upload and delete scripts use this identifier to identify the rules in Grafana. If you want to upload the same json file for different orginization, you need to change the identifier in the json file.
 ---
 
 ## Prerequisites
@@ -27,11 +27,8 @@ Note: Within the json file, each alert rules has a unique identifier.(UUID), the
 Before using these scripts, ensure you have the following:
 
 1.  **Command-Line Tools:**
-    * **`curl`**: A tool for transferring data with URLs, used to make the API requests.
-    * **`jq`**: A lightweight and powerful command-line JSON processor.
-        * **macOS:** `brew install jq`
-        * **Linux (Debian/Ubuntu):** `sudo apt-get install jq`
-        * **Linux (RHEL/CentOS):** `sudo yum install jq`
+    * **`terraform`**: A tool for automation tasks,with the grafana provider to manage Grafana resources.used to make the API requests. Please check [MacOS](https://developer.hashicorp.com/terraform/install#darwin),[windows](https://developer.hashicorp.com/terraform/install#windows),[Linux](https://developer.hashicorp.com/terraform/install#linux) for how to install it.  
+    * **`Linux shell`**: A Linux Bash shell enviroment.
 
 2.  **Grafana API Key:**
     * You need an API key with the **Editor** role for the target Grafana organization. An Editor role is required to create, view, and delete folders and alert rules.
@@ -39,51 +36,123 @@ Before using these scripts, ensure you have the following:
 
 ---
 
+## Terraform Files
+
+**Main.tf**
+* main file to define grafana provider,url,authehntication information.
+
+```terraform
+terraform {
+    required_providers {
+        grafana = {
+            source = "grafana/grafana"
+            version = ">= 2.9.0"
+        }
+    }
+}
+
+provider "grafana" {
+    url = <grafana-url>
+    auth = <api-key>
+}
+```
+
+**datasources.tf**
+* datasource.tf file to define grafana datasource name that imported alert rules used for query and the grafana folder which hold the imported alert rules.
+
+```terraform
+data "grafana_data_source" "my_target_data_source" {
+    name = "prometheus-C4E"
+}
+
+resource "grafana_folder" "RHOCP_OPS_EXTRA" {
+    title = "RHOCP_OPS_EXTRA"
+}
+```
+
+---
+**ALL-In-One.tf**
+* ALL-In-One.tf contains a set of out-of-the-box OpenShift Container Platform alert rules that have been converted into the Grafana provisioning format through the [import tool](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/alerting-migration/) with the grafana version 12.1.0
+
+```terraform
+resource "grafana_rule_group" "bucket-state-alert-rules" {
+  disable_provenance = true
+  name             = "bucket-state-alert.rules"
+  folder_uid       = grafana_folder.RHOCP_OPS_EXTRA.uid
+  interval_seconds = 60
+
+  rule {
+    name      = "NooBaaBucketErrorState"
+    condition = "threshold"
+
+    data {
+      ref_id     = "query"
+      query_type = "prometheus"
+
+      relative_time_range {
+        from = 660
+        to   = 60
+      }
+... ommited ...
+```
+
+** By default, you cannot edit resources provisioned via Terraform in Grafana. This ensures that your alerting stack always stays in sync with your Terraform code.
+To make provisioned resources editable in the Grafana UI, enable the disable_provenance attribute on alerting resources. **
+
+
+---
+
 ## How to Use the Scripts
 
-### 📜 `upload-grafana-rules.sh`
-
-This script reads a Grafana-provisioning-format JSON file, finds or creates the specified folders in Grafana, and uploads each rule individually.
-
-#### **Usage**
-
-Make the script executable and run it with the required arguments.
+### Clone repository 
 
 ```bash
-chmod +x upload-grafana-rules.sh
-./upload-grafana-rules.sh <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json>
+git clone https://github.com/pacopeng/ConvertAlertRulesToGrafana.git
 ```
 
-**Arguments:**
-* **`GRAFANA_URL`**: The base URL of your Grafana instance (e.g., `https://grafana.example.com`).
-* **`GRAFANA_API_KEY`**: The API key you generated with the Editor role.
-* **`PATH_TO_RULES_FILE.json`**: The path to the JSON file containing the alert rules.
-* **`DATASOURCE_UID`**: The UID of the datasource where the rules should be uploaded.
+### Initialze the working direcotry
+```bash
+terraform init
+```
+This command initializes the Terraform directory, installing the Grafana Terraform provider configured in the main.tf file.
 
-### Examples
-**Upload to the default organization:**
+### provision the resources
 
 ```bash
-./upload-grafana-rules.sh [https://my-grafana.com](https://my-grafana.com) glsa_xxxxxxxxxx \
-grafana_provisioning_rules/openshift-dns.rules.json  ceuoby3nl4qgwc
+terraform apply
 ```
+Before applying any changes to Grafana, Terraform displays the execution plan and requests your approval.
+```bash
+ Plan: 4 to add, 0 to change, 0 to destroy.
 
-### 📜 `delete-grafana-rules.sh`
+ Do you want to perform these actions?
+ Terraform will perform the actions described above.
+ Only 'yes' will be accepted to approve.
 
-This script reads the same JSON file, extracts the Unique ID (uid) of every rule, and sends a DELETE request to Grafana for each one.
-
-#### **Usage**
-Make the script executable and run it with the same arguments you would use for uploading.
+ Enter a value:
+```
+Once you have confirmed to proceed with the changes, Terraform will create the provisioned resources in Grafana!
 
 ```bash
-chmod +x delete-grafana-rules.sh
-./delete-grafana-rules.sh <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json>
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 ```
 
-### Example
-**Delete all rules defined in the openshift-dns.rules.json file**
+###  unprovision the resources
 
-```Bash
-./delete-grafana-rules.sh https://my-grafana.com glsa_xxxxxxxxxx \
-grafana_provisioning_rules/openshift-dns.rules.json
+This script is used for destroy the resources that provisioned by previsous steps. use this if you need to adjust the alert rules.
+
+```bash
+terraform destroy
+```
+
+Delete all rules defined in ALL-In-One.tf file and confirm with your answer.
+
+```bash
+Plan: 0 to add, 0 to change, 28 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
 ```

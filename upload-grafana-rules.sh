@@ -1,152 +1,157 @@
 #!/bin/bash
-set -e # Exit immediately if a command exits with a non-zero status.
 
-# --- Script Configuration ---
-GRAFANA_URL="$1"
-GRAFANA_API_KEY="$2"
-RULES_FILE="$3"
-DATASOURCE_UID="$4"
-PLACEHOLDER="REPLACE_ME_WITH_YOUR_DATASOURCE"
+# ==============================================================================
+# Grafana Alert Rules - Upload Script (v5)
+#
+# Description:
+# This script intelligently uploads Prometheus-style alert rule groups from a
+# JSON file to a Grafana instance. It handles files containing multiple folders,
+# where each top-level key in the JSON is treated as a folder name. It
+# creates folders if they don't exist and then creates or updates the rule
+# groups within the appropriate folder.
+#
+# Dependencies:
+# - 'jq': This script requires jq to parse and manipulate JSON data.
+#   Install on Debian/Ubuntu: sudo apt-get install jq
+#   Install on macOS (Homebrew): brew install jq
+#
+# Usage:
+# 1. Save this script as 'upload_rules.sh'.
+# 2. Make it executable: chmod +x upload_rules.sh
+# 3. Run the script with the required arguments:
+#    ./upload_rules.sh <grafana_url> <api_token> <json_file>
+#
+# Example:
+#    ./upload_rules.sh http://localhost:3000 YOUR_API_TOKEN grafana_rules.json
+#
+# ==============================================================================
 
-# --- Usage Instructions ---
-if [[ $# -ne 4 ]]; then
-  echo "This script uploads Grafana alert rules from a provisioning JSON file using the REST API."
-  echo "It temporarily replaces a datasource placeholder in the file before uploading."
-  echo ""
-  echo "Usage: $0 <GRAFANA_URL> <GRAFANA_API_KEY> <PATH_TO_RULES_FILE.json> <DATASOURCE_UID>"
-  echo "Example: $0 https://my-grafana.com glsa_xxxxxxxxxxxx my-rules.json ds_uid_goes_here"
-  exit 1
-fi
-
-# --- File Templating & Cleanup ---
-# This function reverts the file to its original state.
-# Thanks to 'set -e', this part of the script will only be reached if all preceding commands succeed.
-cleanup() {
-  echo "--------------------------------------------------"
-  echo "✅ Script finished successfully. Rolling back changes to $RULES_FILE..."
-  # Use -i '' for macOS compatibility. For Linux, you can just use -i.
-  sed -i '' "s/$DATASOURCE_UID/$PLACEHOLDER/g" "$RULES_FILE"
-  echo "Rollback complete."
+# --- Function to display usage information ---
+usage() {
+    echo "Usage: $0 <grafana_url> <api_token> <json_file>"
+    echo
+    echo "Arguments:"
+    echo "  grafana_url     URL of your Grafana instance (e.g., http://localhost:3000)"
+    echo "  api_token       Your Grafana API Token with Admin or Editor permissions"
+    echo "  json_file       Path to the JSON file with the alert rules to upload"
+    exit 1
 }
-# Register the cleanup function to be called on successful script exit.
-trap cleanup EXIT
 
-# --- Sanitize URL ---
-# Add https:// if no scheme is present
-if ! [[ "$GRAFANA_URL" =~ ^https?:// ]]; then
-  echo "-> No http/https scheme found in URL. Prepending https://."
-  GRAFANA_URL="https://$GRAFANA_URL"
+# --- Argument and Dependency Validation ---
+if [ "$#" -ne 3 ]; then
+    echo "Error: Incorrect number of arguments provided."
+    usage
 fi
-# Remove any trailing slashes from the URL for robustness
-GRAFANA_URL="${GRAFANA_URL%/}"
 
-# --- Dependency Check ---
 if ! command -v jq &> /dev/null; then
-  echo "Error: jq is not installed. Please install it to continue (e.g., 'brew install jq')."
-  exit 1
-fi
-if ! command -v curl &> /dev/null; then
-  echo "Error: curl is not installed. Please install it to continue."
-  exit 1
+    echo "Error: 'jq' is not installed, but it's required for this script."
+    echo "Please install jq to continue."
+    exit 1
 fi
 
-echo "Processing file: $RULES_FILE"
+# --- Assign Command-Line Arguments to Variables ---
+GRAFANA_URL="$1"
+API_TOKEN="$2"
+JSON_FILE="$3"
 
-# --- Temporary Datasource Replacement ---
-echo "-> Temporarily replacing placeholder '$PLACEHOLDER' with datasource UID '$DATASOURCE_UID'..."
-# Use -i '' for macOS compatibility. For Linux, you can just use -i.
-sed -i '' "s/$PLACEHOLDER/$DATASOURCE_UID/g" "$RULES_FILE"
-echo "Replacement complete."
+# --- Main Script Logic ---
 
+# Check if the JSON file exists
+if [ ! -f "$JSON_FILE" ]; then
+    echo "Error: JSON file not found at '$JSON_FILE'"
+    exit 1
+fi
 
-# --- Main Logic ---
+echo "Step 1: Parsing all folder names from '$JSON_FILE'..."
 
-# Read the entire JSON file content
-rules_json=$(cat "$RULES_FILE")
+# Get all top-level keys from the JSON, which represent the folder names.
+FOLDER_NAMES=$(jq -r 'keys[]' "$JSON_FILE")
+if [ -z "$FOLDER_NAMES" ]; then
+    echo "Error: Could not find any folder definitions (top-level keys) in the JSON file."
+    exit 1
+fi
 
-# Get the total number of rule groups defined in the file
-num_groups=$(echo "$rules_json" | jq '.groups | length')
-echo "Found $num_groups rule group(s) to process."
+# --- Loop through each folder defined in the JSON file ---
+for FOLDER_NAME in $FOLDER_NAMES; do
+    echo "=================================================="
+    echo "Processing folder: '${FOLDER_NAME}'"
+    echo "=================================================="
 
-# Loop through each group in the JSON file
-for (( i=0; i<$num_groups; i++ )); do
-  # Extract the current group's data using jq
-  group_json=$(echo "$rules_json" | jq ".groups[$i]")
-  folder_name=$(echo "$group_json" | jq -r '.folder')
-  group_name=$(echo "$group_json" | jq -r '.name')
+    echo "Step 2: Checking for Grafana folder..."
 
-  echo "--------------------------------------------------"
-  echo "Processing Group: '$group_name' -> Folder: '$folder_name'"
+    # Search for the folder by title to get its UID
+    FOLDER_UID=$(curl -s -H "Authorization: Bearer ${API_TOKEN}" "${GRAFANA_URL}/api/folders" | jq -r --arg FOLDER_NAME "${FOLDER_NAME}" '.[] | select(.title == $FOLDER_NAME) | .uid')
 
-  # --- Step 1: Find or Create the Target Folder ---
-  echo "  -> Fetching folder list from Grafana..."
-  folder_list_json=$(curl -s -H "Authorization: Bearer $GRAFANA_API_KEY" "$GRAFANA_URL/api/folders")
-
-  # Validate the JSON response from the API
-  if ! echo "$folder_list_json" | jq empty 2>/dev/null; then
-      echo "  -> ERROR: Received invalid JSON from Grafana's /api/folders endpoint."
-      echo "     This is often caused by an incorrect URL or a reverse proxy issue."
-      echo "--- API Response ---"
-      echo "$folder_list_json"
-      echo "--------------------"
-      exit 1
-  fi
-
-  # Search for the folder by its title to get its UID
-  folder_uid=$(echo "$folder_list_json" | jq -r ".[] | select(.title == \"$folder_name\") | .uid")
-
-  if [[ -z "$folder_uid" ]]; then
-    echo "  -> Folder '$folder_name' not found. Creating it..."
-    # If the folder doesn't exist, create it and capture the new UID
-    response=$(curl -s -X POST \
-      -H "Content-Type: application/json" \
-      -H "Authorization: Bearer $GRAFANA_API_KEY" \
-      -d "{\"title\": \"$folder_name\"}" \
-      "$GRAFANA_URL/api/folders")
-    
-    folder_uid=$(echo "$response" | jq -r '.uid')
-
-    if [[ -z "$folder_uid" || "$folder_uid" == "null" ]]; then
-        echo "  -> ERROR: Failed to create folder '$folder_name'. Aborting."
-        echo "  -> API Response: $response"
-        exit 1
-    fi
-    echo "  -> Created folder with UID: $folder_uid"
-  else
-    echo "  -> Found existing folder with UID: $folder_uid"
-  fi
-
-  # --- Step 2: Prepare the Payload for each Rule ---
-  num_rules=$(echo "$group_json" | jq '.rules | length')
-  echo "  -> Found $num_rules rule(s) in group '$group_name'."
-
-  for (( j=0; j<$num_rules; j++ )); do
-    rule_json=$(echo "$group_json" | jq ".rules[$j]")
-    rule_title=$(echo "$rule_json" | jq -r '.title')
-
-    # Add the folder UID and group name to the rule's JSON payload
-    api_payload=$(echo "$rule_json" | jq --arg folder_uid "$folder_uid" --arg group_name "$group_name" \
-      '. + {folderUid: $folder_uid, group: $group_name}')
-
-    # --- Step 3: Upload the individual Rule ---
-    echo "    -> Uploading rule '$rule_title'..."
-    api_endpoint="$GRAFANA_URL/api/v1/provisioning/alert-rules"
-
-    # Make the POST request to create or update the alert rule
-    response_code=$(curl -s -w "%{http_code}" -X POST \
-      -H "Content-Type: application/json" \
-      -H "Authorization: Bearer $GRAFANA_API_KEY" \
-      -d "$api_payload" \
-      "$api_endpoint" -o /dev/null)
-
-    if [[ "$response_code" -ge 200 && "$response_code" -lt 300 ]]; then
-      echo "    -> SUCCESS: Rule '$rule_title' uploaded successfully (HTTP $response_code)."
+    # If FOLDER_UID is empty, the folder doesn't exist, so create it
+    if [ -z "$FOLDER_UID" ]; then
+        echo "Folder not found. Creating it..."
+        CREATE_RESPONSE=$(curl -s -X POST -H "Authorization: Bearer ${API_TOKEN}" -H "Content-Type: application/json" -d "{\"title\":\"${FOLDER_NAME}\"}" "${GRAFANA_URL}/api/folders")
+        
+        # Check for errors during folder creation
+        if echo "${CREATE_RESPONSE}" | jq -e '.uid' > /dev/null; then
+            FOLDER_UID=$(echo "${CREATE_RESPONSE}" | jq -r '.uid')
+            echo "Successfully created folder '${FOLDER_NAME}' with UID: ${FOLDER_UID}"
+        else
+            echo "Error: Failed to create folder '${FOLDER_NAME}'."
+            echo "Grafana API response: ${CREATE_RESPONSE}"
+            continue # Skip to the next folder
+        fi
     else
-      echo "    -> ERROR: Failed to upload rule '$rule_title' (HTTP $response_code)."
-      # To see the full error from Grafana, you can re-run the curl without '-o /dev/null'
-      exit 1 # Exit on failure
+        echo "Found existing folder with UID: ${FOLDER_UID}"
     fi
-  done
+
+    echo "Step 3: Processing and uploading rule groups for this folder..."
+
+    # Extract the array of rule groups for the current folder.
+    # The structure is {"folder_name": [[{"group1"}, {"group2"}]]}
+    # .[$FOLDER_NAME][0] selects the inner array of groups.
+    # The ' // []' provides a fallback to an empty array if the key is missing or null.
+    GROUPS_ARRAY_JSON=$(jq -c --arg FOLDER_NAME "$FOLDER_NAME" '.[$FOLDER_NAME][0] // []' "$JSON_FILE")
+
+    # Check if any rule groups were found for this folder
+    if [ -z "$GROUPS_ARRAY_JSON" ] || [ "$GROUPS_ARRAY_JSON" == "[]" ]; then
+        echo "Warning: No rule groups found to upload in folder '$FOLDER_NAME'."
+        continue # Skip to the next folder
+    fi
+
+    # Loop through each rule group object in the array
+    echo "$GROUPS_ARRAY_JSON" | jq -c '.[]' | while IFS= read -r group_json; do
+        GROUP_NAME=$(echo "$group_json" | jq -r '.name')
+        INTERVAL=$(echo "$group_json" | jq -r '.interval')
+
+        echo "--------------------------------------------------"
+        echo "Preparing rule group: '${GROUP_NAME}'..."
+
+        # Transform the rules within this group to the format Grafana API expects
+        TRANSFORMED_RULES=$(echo "$group_json" | jq -c '[ .rules[] | .grafana_alert + { annotations: .annotations, labels: .labels, for: .for } ]')
+
+        # Construct the final payload for the API
+        PAYLOAD=$(jq -n --arg name "$GROUP_NAME" --arg interval "$INTERVAL" --argjson rules "$TRANSFORMED_RULES" \
+            '{name: $name, interval: $interval, rules: $rules}')
+
+        # API endpoint for creating/updating a rule group within a folder
+        API_ENDPOINT="${GRAFANA_URL}/api/v1/provisioning/folders/${FOLDER_UID}/rule-groups/${GROUP_NAME}"
+
+        echo "Uploading rule group '${GROUP_NAME}' to folder '${FOLDER_NAME}'..."
+        RESPONSE=$(curl -s -w "\n%{http_code}" -X PUT \
+             -H "Authorization: Bearer ${API_TOKEN}" \
+             -H "Content-Type: application/json" \
+             --data "$PAYLOAD" \
+             "${API_ENDPOINT}")
+
+        # Extract the response body and HTTP status code
+        HTTP_CODE=$(tail -n1 <<< "$RESPONSE")
+        RESPONSE_BODY=$(sed '$ d' <<< "$RESPONSE")
+
+        if [ "$HTTP_CODE" -eq 202 ] || [ "$HTTP_CODE" -eq 201 ]; then
+            echo "SUCCESS: Rule group '${GROUP_NAME}' uploaded successfully (HTTP ${HTTP_CODE})."
+        else
+            echo "ERROR: Failed to upload rule group '${GROUP_NAME}' (HTTP ${HTTP_CODE})."
+            echo "Response Body: ${RESPONSE_BODY}"
+        fi
+    done
 done
 
-# The 'trap cleanup EXIT' at the top of the script will handle the final messages and rollback.
+echo "=================================================="
+echo "Upload process finished for all folders."
+

@@ -3,3 +3,18 @@ extract_rules.sh
 convert_to_grafana.sh
 upload-grafana-rules copy.sh
 prometheus_rules/
+grafana_provisioning_rules/
+grafana_provisioning_rules/*
+delete-all-grafana-rules.sh
+delete-grafana-rules copy.sh
+delete-grafana-rules.sh
+upload-grafana-rules.sh
+export-grafana-rules.sh
+*.sh
+*.json
+.terraform
+.terraform.*
+.DS_Store
+terraform.*
+terraform_files/
+main-copy.tf
